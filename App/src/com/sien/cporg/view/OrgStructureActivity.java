@@ -56,7 +56,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	private boolean inited = false;
 	private String loginJid;
 	private String organiseRootName = "组织架构";
-	private boolean checkMode = false;
+	private boolean checkMode = true;
 	
 	private OrgStructurePresenter helper = null;
 	private boolean fromCache = true;

@@ -7,9 +7,14 @@ public class RequestNetorLocalJson extends BaseRequestData {
 
 	@Override
 	public String requestData(Context context) {
-		BaseRequestData resn = new RequestNetJson();
-		resn.url = this.url;
-		String result = resn.requestData(context);
+		BaseRequestData resn;
+		String result = "";
+		
+		if(url.indexOf("http://") != -1){
+			resn = new RequestNetJson();
+			resn.url = url;
+			result = resn.requestData(context);
+		}
 		
 		if(TextUtils.isEmpty(result)){
 			resn = new RequestLocalJson();
