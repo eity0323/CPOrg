@@ -5,11 +5,7 @@ import com.sien.cporg.model.beans.BaseModel;
 import android.text.TextUtils;
 
 /**
- * [A brief description]
- * 
- * @author devin.hu
- * @version 1.0
- * @date 2013-9-30
+ * 数据响应基类
  **/
 public class BaseResponse extends BaseModel {
 
@@ -87,10 +83,10 @@ public class BaseResponse extends BaseModel {
 	}
 
 	/**
-	 * 只适合共轴后台接口
+	 * 判断请求是否成功
 	 * @return
 	 */
-	public boolean isGZSuccess(){
+	public boolean isSuccess(){
 		if(!TextUtils.isEmpty(status) && "1".equals(status)){
 			return true;
 		}

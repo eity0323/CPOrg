@@ -6,11 +6,13 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.sien.cporg.model.beans.Department;
+import com.sien.cporg.utils.Params;
 import com.sien.cporg.utils.events.IMAPPEvents;
 import com.sien.cporg.utils.events.IMAPPEvents.LoadDepartmentEvent;
 import com.sien.cporg.utils.events.IMAPPEvents.LoadEmployeeEvent;
 import com.sien.cporg.utils.log.NLog;
 import com.sien.cporg.utils.parser.JsonMananger;
+import com.sien.cporg.utils.request.RequestNetorLocalJson;
 import com.sien.cporg.utils.response.DepartmentResponse;
 
 import de.greenrobot.event.EventBus;
@@ -42,29 +44,30 @@ public class DepartmentManager extends BaseOrgManager{
 	
 	@Override
 	protected String getDefaultConfigFile() {
-		return "organize.json";
+		return Params.ORG_CONFIG_FILE;
+	}
+	
+	@Override
+	protected String getDefaultUrl() {
+		return Params.ORG_CONFIG_URL;
 	}
 
 	@Override
-	protected boolean parseLoadData(String jsonStr) {
+	protected void parseLoadData(String jsonStr) {
 		if(TextUtils.isEmpty(jsonStr)){
 			loaded = false;
 		}
 		
-		boolean dataLoaded = false;
 		try {
 			DepartmentResponse response = JsonMananger.jsonToBean(jsonStr, DepartmentResponse.class);
 			if (response != null) {
 				datasource = response.getData();
-				
-				dataLoaded = true;
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return dataLoaded;
 	}
 
 	@Override
@@ -100,7 +103,7 @@ public class DepartmentManager extends BaseOrgManager{
 
 		if (!loaded) { // 初始读取配置文件
 			loaded = true;
-			initData(context);
+			initData(context,new RequestNetorLocalJson());
 		} else { // 从缓存中读取配置信息
 			resultDatas();
 		}

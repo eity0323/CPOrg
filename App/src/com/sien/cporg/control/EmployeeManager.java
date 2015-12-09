@@ -10,6 +10,7 @@ import com.sien.cporg.utils.events.IMAPPEvents;
 import com.sien.cporg.utils.events.IMAPPEvents.LoadEmployeeEvent;
 import com.sien.cporg.utils.log.NLog;
 import com.sien.cporg.utils.parser.JsonMananger;
+import com.sien.cporg.utils.request.RequestNetorLocalJson;
 import com.sien.cporg.utils.response.EmployeeResponse;
 
 import de.greenrobot.event.EventBus;
@@ -28,6 +29,9 @@ public class EmployeeManager extends BaseOrgManager{
 	private List<Employee> employees = null;
 	
 	private String employeeFile = "employee.json";
+	private String employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId=2089&sessionId=20e70823f62a42a68cd8e5cb29454234";
+	
+	private String requestMode = employeeFile;//请求模式
 
 	public static EmployeeManager getInstance() {
 		if (instance == null) {
@@ -44,24 +48,25 @@ public class EmployeeManager extends BaseOrgManager{
 	protected String getDefaultConfigFile() {
 		return employeeFile;
 	}
+	
+	@Override
+	protected String getDefaultUrl() {
+		return employeeUrl;
+	}
 
 	@Override
-	protected boolean parseLoadData(String jsonStr) {
-		boolean dataLoaded = false;
+	protected void parseLoadData(String jsonStr) {
 		try {
 			EmployeeResponse response = JsonMananger.jsonToBean(jsonStr, EmployeeResponse.class);
 			if (response != null) {
 				employees = response.getData();
 				
-				datasource.put(employeeFile, employees);
-				
-				dataLoaded = true;
+				datasource.put(requestMode, employees);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dataLoaded;
 	}
 
 	@Override
@@ -94,17 +99,25 @@ public class EmployeeManager extends BaseOrgManager{
 			EventBus.getDefault().post(new IMAPPEvents.LoadEmployeeEvent(LoadEmployeeEvent.STATUS_FAIL, null));
 			return;
 		}
-
-		if (datasource != null && !datasource.containsKey(employeeFile)) { // 初始读取配置文件
-			initData(context);
+		
+		if (datasource != null && !datasource.containsKey(requestMode)) { // 初始读取配置文件
+			initData(context,new RequestNetorLocalJson());
 		} else { // 从缓存中读取配置信息
-			employees = datasource.get(employeeFile);
+			employees = datasource.get(requestMode);
 			resultDatas();
 		}
 	}
 	
 	public void getDetailData(final Context context,String departmentId) {
-		employeeFile = departmentId;
+		//加载本地数据
+		//employeeFile = departmentId;
+		//requestMode = employeeFile;
+		
+		//加载网络数据
+		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=20e70823f62a42a68cd8e5cb29454234";
+		requestMode = employeeUrl;
+		
+		System.out.println(departmentId + "--------" + employeeUrl);
 		getDetailData(context);
 	}
 }
