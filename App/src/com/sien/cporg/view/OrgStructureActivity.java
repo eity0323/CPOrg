@@ -21,8 +21,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.sien.cporg.R;
-import com.sien.cporg.model.beans.ContactorVO;
 import com.sien.cporg.model.beans.Department;
+import com.sien.cporg.model.beans.Employee;
 import com.sien.cporg.model.beans.OrgNode;
 import com.sien.cporg.presenter.OrgStructurePresenter;
 import com.sien.cporg.view.adapter.OrgStructureAdapter;
@@ -197,7 +197,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 		List<OrgNode> selNodes = caculateSelectedNodes();//adapter.getSeletedNodes();
 		if(helper == null)	return;
 		
-		List<ContactorVO> list = helper.getSelectedContactors(selNodes);
+		List<Employee> list = helper.getSelectedContactors(selNodes);
 
 		int count = list.size();
 
@@ -237,16 +237,16 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 			if (curNode.isLeaf()) { // 叶子节点
 				if (curNode.getCDptId() == null) { // 成员
 
-					ContactorVO vo = curNode.getContactor();
+					Employee vo = curNode.getEmployee();
 					if (vo != null) {
 						// 选择模式不进入详情页面，显示模式则跳转至详情页面
 						if (checkMode) {
-							if(vo.userJid.equals(loginJid)){//不能选择自己
+							if((""+vo.getUserId()).equals(loginJid)){//不能选择自己
 								Toast.makeText(OrgStructureActivity.this, "请不要选择自己",Toast.LENGTH_SHORT).show();
 								return;
 							}
 							//已经是成员的用户不能取消
-							boolean ismembered = memberCheck(vo.userJid);
+							boolean ismembered = memberCheck(""+vo.getUserId());
 							if(ismembered)	return;
 							//end
 							
@@ -259,7 +259,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 							
 						} else {
 
-							go2ContactorDetailActivity(vo.userJid, vo.isFriend);
+							go2ContactorDetailActivity((""+vo.getUserId()), false);
 						}
 					}
 				} else { // 末级部门
@@ -275,9 +275,9 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	/**检测用户是否已经为成员*/
 	private boolean memberCheck(String memberJid){
 		boolean ismembered = false;
-		List<ContactorVO> templist = helper.getInitSelectedContactors();
-		for(ContactorVO item :templist){
-			if(memberJid.equals(item.userJid)){
+		List<Employee> templist = helper.getInitSelectedContactors();
+		for(Employee item :templist){
+			if(memberJid.equals((""+item.getUserId()))){
 				ismembered = true;
 				break;
 			}
@@ -297,7 +297,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 				if(helper == null)	return;
 				
 				List<OrgNode> selNodes = caculateSelectedNodes();//adapter.getSeletedNodes();
-				List<ContactorVO> list = helper.getSelectedContactors(selNodes);
+				List<Employee> list = helper.getSelectedContactors(selNodes);
 				EventBus.getDefault().post(list);
 
 				finish();

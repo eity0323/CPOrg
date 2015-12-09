@@ -1,11 +1,20 @@
 package com.sien.cporg.control;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.sien.cporg.utils.Params;
 import com.sien.cporg.utils.log.NLog;
+import com.sien.cporg.utils.net.NetworkUtils;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 /**
  * 组织架构基础数据管理
@@ -68,25 +77,37 @@ public abstract class BaseOrgManager {
 		return resultString;
 	}
 	
-//	/*加载网络json配置文件*/
-//	private String readNetJson(Context context){
-//		String result;
-//		if (NetworkUtils.isNetworkAvailable(context)) {			//有网络
-//			SyncHttpClient httpManager = SyncHttpClient.getInstance(context);
-//			try {
-//				result = httpManager.get(Constants.H5_CONFIG_URL);
-//				if (!TextUtils.isEmpty(result)) {			//网络获取
-//					Log4j.debug("--------------------read h5 relate json from network");
-//					return result;
-//				}
-//					
-//			} catch (HttpException e) {
-//				e.printStackTrace();
-//			}
-//			return readLocalJson(context,getDefaultConfigFile());	//读默认配置
-//		} else {
-//			return readLocalJson(context,getDefaultConfigFile());	//读默认配置
-//		}
-//	}
+	/*加载网络json配置文件*/
+	private String readNetJson(Context context){
+		String result;
+		if (NetworkUtils.isNetworkAvailable(context)) {			//有网络
+			
+			OkHttpClient mOkHttpClient = new OkHttpClient();
+	        //cookie enabled
+	        mOkHttpClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
+			
+			final Request request = new Request.Builder()
+            .url(Params.ORG_CONFIG_URL)
+            .build();
+		    Call call = mOkHttpClient.newCall(request);
+		    Response execute;
+			try {
+				execute = call.execute();
+				result = execute.body().string();
+				
+				if (!TextUtils.isEmpty(result)) {			//网络获取
+					NLog.d("--------------------read h5 relate json from network");
+					return result;
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return readLocalJson(context,getDefaultConfigFile());	//读默认配置
+		} else {
+			return readLocalJson(context,getDefaultConfigFile());	//读默认配置
+		}
+	}
 	
 }

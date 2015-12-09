@@ -31,9 +31,7 @@ public class Employee extends BaseModel {
 	
 	/*inner extend*/
 	private boolean isSelected;
-	private boolean isOnline;// 是否在线
-	private String firstLetter;// A-Z排序
-	private int addDelFlag;// Grid添加，删除
+	
 	public long getDepartmentId() {
 		return departmentId;
 	}
@@ -165,24 +163,6 @@ public class Employee extends BaseModel {
 	}
 	public void setSelected(boolean isSelected) {
 		this.isSelected = isSelected;
-	}
-	public boolean isOnline() {
-		return isOnline;
-	}
-	public void setOnline(boolean isOnline) {
-		this.isOnline = isOnline;
-	}
-	public String getFirstLetter() {
-		return firstLetter;
-	}
-	public void setFirstLetter(String firstLetter) {
-		this.firstLetter = firstLetter;
-	}
-	public int getAddDelFlag() {
-		return addDelFlag;
-	}
-	public void setAddDelFlag(int addDelFlag) {
-		this.addDelFlag = addDelFlag;
 	}
 
 }

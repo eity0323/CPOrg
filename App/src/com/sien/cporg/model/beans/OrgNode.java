@@ -3,10 +3,13 @@ package com.sien.cporg.model.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 树节点
+ * */
 public class OrgNode {
 	private OrgNode parent;// 父节点
 	private List<OrgNode> children = new ArrayList<OrgNode>();// 子节点
-	private ContactorVO contactor;
+	private Employee employees;
 	
 	private boolean isChecked = false;// 是否处于选中状态
 	private boolean isExpanded = true;// 是否处于展开状态
@@ -29,8 +32,8 @@ public class OrgNode {
 	 * @param value
 	 *            节点的值
 	 */
-	public OrgNode(ContactorVO contactor) {
-		this.contactor = contactor;
+	public OrgNode(Employee employees) {
+		this.employees = employees;
 	}
 	
 	public OrgNode() {
@@ -105,12 +108,12 @@ public class OrgNode {
 	}
 	
 	/*组织架构成员*/
-	public ContactorVO getContactor() {
-		return contactor;
+	public Employee getEmployee() {
+		return employees;
 	}
 
-	public void setContactor(ContactorVO contactor) {
-		this.contactor = contactor;
+	public void setEmployee(Employee employees) {
+		this.employees = employees;
 	}
 
 	/**

@@ -281,7 +281,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 
 		if (position == 0) { // 根节点
 			// 显示文本
-			holder.tvText.setText(n.getContactor().name);
+			holder.tvText.setText(n.getEmployee().getName());
 			holder.tvText.setTextColor(con.getResources().getColor(R.color.im_theme_font_color));
 
 			holder.ivIcon.setVisibility(View.GONE);
@@ -301,7 +301,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 				}
 
 				// 显示文本
-				holder.tvText.setText(n.getContactor().name);
+				holder.tvText.setText(n.getEmployee().getName());
 				holder.tvText.setTextColor(con.getResources().getColor(R.color.im_theme_font_sub_color));
 
 				if (n.isLeaf()) {
@@ -319,7 +319,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 						holder.ivIcon.setVisibility(View.VISIBLE);
 						holder.rlLayout.setBackgroundColor(0x00eeeeee);
 
-						String avatar = n.getContactor().iconUrl;
+						String avatar = n.getEmployee().getPhoto();
 						if (TextUtils.isEmpty(avatar)) {
 							avatar = "drawable://" + R.drawable.basic_skin_icon_default_avatar_small;
 						}

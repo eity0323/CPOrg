@@ -7,7 +7,6 @@ import android.content.Context;
 import android.os.Message;
 import android.text.TextUtils;
 
-import com.sien.cporg.model.beans.ContactorVO;
 import com.sien.cporg.model.beans.Department;
 import com.sien.cporg.model.beans.Employee;
 import com.sien.cporg.model.beans.OrgNode;
@@ -35,7 +34,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	private IOrgStructureAction impl = null;
 	private IOrgStructureModel imodel = null;
 
-	private List<ContactorVO> initSelectedContactors = new ArrayList<ContactorVO>();
+	private List<Employee> initSelectedContactors = new ArrayList<Employee>();
 	private OrgNode organizes; // 组织架构根节点
 	private OrgNode targetNode; // 根据指点节点id查到的目标节点
 	private OrgNode curNode; // 当前节点
@@ -69,7 +68,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		return organiseRootName;
 	}
 
-	public List<ContactorVO> getInitSelectedContactors() {
+	public List<Employee> getInitSelectedContactors() {
 		return initSelectedContactors;
 	}
 
@@ -82,7 +81,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 
 	private void initial() {
 		// 初始化选中用户
-		List<ContactorVO> list = (List<ContactorVO>) LruCacheManager.getInstance().get(Params.CHOOSE_CONTACOTOR_CACHE_KEY);
+		List<Employee> list = (List<Employee>) LruCacheManager.getInstance().get(Params.CHOOSE_CONTACOTOR_CACHE_KEY);
 		if (list != null) {
 			initSelectedContactors.clear();
 			initSelectedContactors.addAll(list);
@@ -176,7 +175,6 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		}
 
 		OrgNode node;
-		ContactorVO item;
 		String name = "";
 		for (Employee employee : empData) {
 			name = "";
@@ -191,24 +189,15 @@ public class OrgStructurePresenter extends IMBasePresenter {
 
 			node = new OrgNode();
 			node.setCName(name);
-			item = new ContactorVO();
-			item.name = name;
-			item.userJid = ""+employee.getUserId();
-			item.isFriend = false;
 
-			String avatarUrl = employee.getPhoto();
-			item.iconUrl = avatarUrl;
 
 			// 检测用户的初始选中状态
 			if (needCheckSelected) {
-				node.setChecked(checkContactorSelectStatus(item.userJid));
+				node.setChecked(checkContactorSelectStatus(""+employee.getUserId()));
 			}
-			
-			item.account = employee.getUserName();
-			item.email = employee.getEmail();
 
 			node.setParent(targetNode);
-			node.setContactor(item);
+			node.setEmployee(employee);
 
 			targetNode.add(node);
 		}
@@ -219,8 +208,8 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	/** 检测用户的初始选中状态 */
 	private boolean checkContactorSelectStatus(String userJid) {
 		boolean res = false;
-		for (ContactorVO cvo : initSelectedContactors) {
-			if (userJid.equals(cvo.userJid)) {
+		for (Employee cvo : initSelectedContactors) {
+			if (userJid.equals(cvo.getUserId())) {
 				res = true;
 				break;
 			}
@@ -236,16 +225,16 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	}
 
 	/** 获取新选中的联系人（排除初始选中的用户） */
-	public List<ContactorVO> getSelectedContactors(List<OrgNode> selNodes) {
-		List<ContactorVO> list = new ArrayList<ContactorVO>();
+	public List<Employee> getSelectedContactors(List<OrgNode> selNodes) {
+		List<Employee> list = new ArrayList<Employee>();
 
 		if (selNodes != null) {
-			ContactorVO cvo;
+			Employee cvo;
 			for (OrgNode node : selNodes) {
 				if (node.isLeaf()) {
-					cvo = node.getContactor();
+					cvo = node.getEmployee();
 
-					if (cvo != null && !cvo.userJid.equals(loginJid)) {
+					if (cvo != null && !(""+cvo.getUserId()).equals(loginJid)) {
 						list.add(cvo);
 					}
 				}
@@ -253,19 +242,19 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		}
 		
 		// 删除初始数据中重复的记录
-		List<ContactorVO> tempInitDatas;
+		List<Employee> tempInitDatas;
 		try {
-			tempInitDatas = (List<ContactorVO>) CloneUtils.deepClone(initSelectedContactors);
+			tempInitDatas = (List<Employee>) CloneUtils.deepClone(initSelectedContactors);
 		} catch (Exception e) {
 			e.printStackTrace();
-			tempInitDatas = new ArrayList<ContactorVO>();
-			for (ContactorVO outitem : initSelectedContactors) {
+			tempInitDatas = new ArrayList<Employee>();
+			for (Employee outitem : initSelectedContactors) {
 				tempInitDatas.add(outitem);
 			}
 		}
-		for (ContactorVO initem : list) {
-			for (ContactorVO outitem : tempInitDatas) {
-				if (initem.userJid.equals(outitem.userJid)) {
+		for (Employee initem : list) {
+			for (Employee outitem : tempInitDatas) {
+				if ((""+initem.getUserId()).equals((""+outitem.getUserId()))) {
 					tempInitDatas.remove(outitem);
 					break;
 				}
@@ -273,7 +262,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		}
 
 		// 添加初始数据中非重复的记录
-		for (ContactorVO outitem : tempInitDatas) {
+		for (Employee outitem : tempInitDatas) {
 			list.add(outitem);
 		}
 
@@ -311,9 +300,9 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		}
 		rootNode.setCName(organiseRootName);
 		
-		ContactorVO cvo = new ContactorVO();
-		cvo.name = organiseRootName;
-		rootNode.setContactor(cvo);
+		Employee cvo = new Employee();
+		cvo.setName(organiseRootName);
+		rootNode.setEmployee(cvo);
 		
 		organizes = rootNode;
 		
@@ -344,7 +333,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	/** 生成树节点 */
 	public void generatorNode(OrgNode node, List<Department> department) {
 		OrgNode childNode;
-		ContactorVO cvo;
+		Employee cvo;
 		for (Department item : department) {
 			childNode = new OrgNode();
 			childNode.setParent(node);
@@ -352,9 +341,9 @@ public class OrgStructurePresenter extends IMBasePresenter {
 			childNode.setCDptId(Long.toString(item.getDepartmentId()));
 			childNode.setExpanded(false);
 
-			cvo = new ContactorVO();
-			cvo.name = item.getName();
-			childNode.setContactor(cvo);
+			cvo = new Employee();
+			cvo.setName(item.getName());
+			childNode.setEmployee(cvo);
 
 			List<Department> list = item.getSubDptList();
 			if (list != null && list.size() > 0) {
@@ -367,15 +356,15 @@ public class OrgStructurePresenter extends IMBasePresenter {
 
 	/** 初始化树节点 */
 	public OrgNode initTree() {
-		ContactorVO cvo;
+		Employee cvo;
 
 		// 创建根节点
 		OrgNode root = new OrgNode();
 		root.setCDptId("0");
 		root.setCName(organiseRootName);
-		cvo = new ContactorVO();
-		cvo.name = organiseRootName;
-		root.setContactor(cvo);
+		cvo = new Employee();
+		cvo.setName(organiseRootName);
+		root.setEmployee(cvo);
 
 		organizes = root;
 		return root;
