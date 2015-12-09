@@ -31,6 +31,10 @@ public class DepartmentManager extends BaseOrgManager{
 	
 	private static boolean loaded = false; // 是否已经加载过配置
 	
+	private String departmentFile = Params.ORG_CONFIG_FILE;//加载本地数据
+	private String departmentUrl = Params.ORG_CONFIG_URL;//加载网络数据
+	private String requestMode = departmentUrl;
+	
 	public static DepartmentManager getInstance() {
 		if (instance == null) {
 			synchronized (DepartmentManager.class) {
@@ -40,16 +44,6 @@ public class DepartmentManager extends BaseOrgManager{
 			}
 		}
 		return instance;
-	}
-	
-	@Override
-	protected String getDefaultConfigFile() {
-		return Params.ORG_CONFIG_FILE;
-	}
-	
-	@Override
-	protected String getDefaultUrl() {
-		return Params.ORG_CONFIG_URL;
 	}
 
 	@Override
@@ -96,14 +90,16 @@ public class DepartmentManager extends BaseOrgManager{
 	 */
 	public void getDetailData(final Context context) {
 		if (context == null) {
-			NLog.d("EmployeeManager", "EmployeeManager context can not be null");
+			NLog.d("DepartmentManager", "DepartmentManager context can not be null");
 			EventBus.getDefault().post(new IMAPPEvents.LoadEmployeeEvent(LoadEmployeeEvent.STATUS_FAIL, null));
 			return;
 		}
 
 		if (!loaded) { // 初始读取配置文件
 			loaded = true;
-			initData(context,new RequestNetorLocalJson());
+			RequestNetorLocalJson req = new RequestNetorLocalJson();
+			req.url = requestMode;
+			initData(context,req);
 		} else { // 从缓存中读取配置信息
 			resultDatas();
 		}

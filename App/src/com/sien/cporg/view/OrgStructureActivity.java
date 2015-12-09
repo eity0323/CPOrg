@@ -235,7 +235,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 			curNode = (OrgNode) adapter.getItem(index);
 
 			if (curNode.isLeaf()) { // 叶子节点
-				if (curNode.getCDptId() == null) { // 成员
+				if (curNode.getDepId() == null) { // 成员
 
 					Employee vo = curNode.getEmployee();
 					if (vo != null) {
@@ -313,7 +313,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	
 	private void caculateNode(List<OrgNode> target,OrgNode rnode){
 		//添加选中的成员
-		if (rnode.isLeaf() && rnode.getCDptId() == null && rnode.isChecked()) {
+		if (rnode.isLeaf() && rnode.getDepId() == null && rnode.isChecked()) {
 			target.add(rnode);
 		}
 		

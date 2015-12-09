@@ -28,8 +28,8 @@ import com.sien.cporg.view.interfaces.IOrgStructureAction;
  */
 public class OrgStructurePresenter extends IMBasePresenter {
 
-	private static final int MSG_UPDATE_DEPARTMENT = 0x0c1;
-	private static final int MSG_UPDATE_CONTACTOR = 0x0c2;
+	private static final int MSG_UPDATE_DEPARTMENT = 0x0c1;//部门
+	private static final int MSG_UPDATE_CONTACTOR = 0x0c2;//成员
 
 	private IOrgStructureAction impl = null;
 	private IOrgStructureModel imodel = null;
@@ -98,7 +98,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	/** 加载员工数据 */
 	public void loadEmployeesData(OrgNode node, boolean fromCache) {
 		curNode = node;
-		String departId = node.getCDptId();
+		String departId = node.getDepId();
 		if(imodel != null){
 			imodel.getEmployeesData(mcontext, departId, sessionId, loginJid, fromCache);
 		}
@@ -167,7 +167,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		}
 
 		// 查找到员工所属部门的节点
-		findParentOrgNode(organizes, curNode.getCDptId());
+		findParentOrgNode(organizes, curNode.getDepId());
 
 		boolean needCheckSelected = false;
 		if (checkMode && initSelectedContactors.size() > 0) { // 选择模式下，且初始选中用户不为空时需要检测用户的初始选中状态
@@ -188,7 +188,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 			}
 
 			node = new OrgNode();
-			node.setCName(name);
+			node.setDepName(name);
 
 
 			// 检测用户的初始选中状态
@@ -271,7 +271,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 
 	/** 查找指定id的节点 */
 	private boolean findParentOrgNode(OrgNode pnode, String nodeid) {
-		String curnodeid = pnode.getCDptId();
+		String curnodeid = pnode.getDepId();
 
 		if (curnodeid != null && nodeid.equals(curnodeid)) { // 若为末级节点，则直接返回
 			targetNode = pnode;
@@ -294,11 +294,11 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	/** 根生成树的根节点 */
 	public OrgNode generateRoot(){
 		OrgNode rootNode = new OrgNode();
-		rootNode.setCDptId("0");
+		rootNode.setDepId("0");
 		if(TextUtils.isEmpty(organiseRootName)){
 			organiseRootName = "";
 		}
-		rootNode.setCName(organiseRootName);
+		rootNode.setDepName(organiseRootName);
 		
 		Employee cvo = new Employee();
 		cvo.setName(organiseRootName);
@@ -337,8 +337,8 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		for (Department item : department) {
 			childNode = new OrgNode();
 			childNode.setParent(node);
-			childNode.setCName(item.getName());
-			childNode.setCDptId(Long.toString(item.getDepartmentId()));
+			childNode.setDepName(item.getName());
+			childNode.setDepId(Long.toString(item.getDepartmentId()));
 			childNode.setExpanded(false);
 
 			cvo = new Employee();
@@ -360,8 +360,8 @@ public class OrgStructurePresenter extends IMBasePresenter {
 
 		// 创建根节点
 		OrgNode root = new OrgNode();
-		root.setCDptId("0");
-		root.setCName(organiseRootName);
+		root.setDepId("0");
+		root.setDepName(organiseRootName);
 		cvo = new Employee();
 		cvo.setName(organiseRootName);
 		root.setEmployee(cvo);

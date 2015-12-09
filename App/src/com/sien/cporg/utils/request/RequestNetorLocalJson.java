@@ -3,16 +3,18 @@ package com.sien.cporg.utils.request;
 import android.content.Context;
 import android.text.TextUtils;
 
-public class RequestNetorLocalJson implements IRequestData {
+public class RequestNetorLocalJson extends BaseRequestData {
 
 	@Override
-	public String requestData(Context context, String url) {
-		IRequestData resn = new RequestNetJson();
-		String result = resn.requestData(context, url);
+	public String requestData(Context context) {
+		BaseRequestData resn = new RequestNetJson();
+		resn.url = this.url;
+		String result = resn.requestData(context);
 		
 		if(TextUtils.isEmpty(result)){
 			resn = new RequestLocalJson();
-			result = resn.requestData(context, url);
+			resn.url = this.url;
+			result = resn.requestData(context);
 		}
 		
 		return result;

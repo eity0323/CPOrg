@@ -2,19 +2,27 @@ package com.sien.cporg.utils.request;
 
 import java.io.InputStream;
 
+import com.sien.cporg.utils.Params;
 import com.sien.cporg.utils.log.NLog;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 /**
  * 请求本地json数据
  * @author sien
  *
  */
-public class RequestLocalJson implements IRequestData {
+public class RequestLocalJson extends BaseRequestData {
+	
+	private String defaultFile = Params.ORG_CONFIG_FILE;
 
 	@Override
-	public String requestData(Context context, String url) {
+	public String requestData(Context context) {
+		if(TextUtils.isEmpty(url)){
+			url = defaultFile;
+		}
+		
 		String resultString = "";
 		try {
 			InputStream inputStream = context.getResources().getAssets().open(url);

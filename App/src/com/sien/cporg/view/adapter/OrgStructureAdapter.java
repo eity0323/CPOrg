@@ -192,8 +192,8 @@ public class OrgStructureAdapter extends BaseAdapter {
 			subnodes = n.getChildren();
 			for (int j = 0; j < subnodes.size(); j++) {
 				OrgNode subn = subnodes.get(j);
-				if ((TextUtils.isEmpty(subn.getCDptId()) || TextUtils.isEmpty(node.getCDptId()) || subn.getCDptId().equals(node.getCDptId()))) {
-					if (!TextUtils.isEmpty(subn.getCName()) && !TextUtils.isEmpty(node.getCName()) && subn.getCName().equals(node.getCName())) {
+				if ((TextUtils.isEmpty(subn.getDepId()) || TextUtils.isEmpty(node.getDepId()) || subn.getDepId().equals(node.getDepId()))) {
+					if (!TextUtils.isEmpty(subn.getDepName()) && !TextUtils.isEmpty(node.getDepName()) && subn.getDepName().equals(node.getDepName())) {
 						n.setExpanded(true);
 						filterNode();
 						break;
@@ -205,8 +205,8 @@ public class OrgStructureAdapter extends BaseAdapter {
 		// 遍历当前节点，设置展开
 		for (int i = 0; i < alls.size(); i++) {
 			OrgNode n = alls.get(i);
-			if (node.getCName().equals(n.getCName())
-					&& (TextUtils.isEmpty(n.getCDptId()) || TextUtils.isEmpty(node.getCDptId()) || n.getCDptId().equals(node.getCDptId()))) {
+			if (node.getDepName().equals(n.getDepName())
+					&& (TextUtils.isEmpty(n.getDepId()) || TextUtils.isEmpty(node.getDepId()) || n.getDepId().equals(node.getDepId()))) {
 				n.setExpanded(true);
 				filterNode();
 				break;
@@ -306,7 +306,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 
 				if (n.isLeaf()) {
 
-					if (n.getCDptId() == null) { // 成员
+					if (n.getDepId() == null) { // 成员
 						// 是否显示复选框
 						if (n.hasCheckBox() && hasCheckBox) {
 							holder.chbSelect.setVisibility(View.VISIBLE);

@@ -6,6 +6,11 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 
+/**
+ * 下拉刷新图标基类
+ * @author sien
+ *
+ */
 public abstract class RefreshDrawable extends Drawable implements Drawable.Callback, Animatable {
 
     private PullRefreshLayout mRefreshLayout;

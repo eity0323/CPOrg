@@ -43,16 +43,6 @@ public class EmployeeManager extends BaseOrgManager{
 		}
 		return instance;
 	}
-	
-	@Override
-	protected String getDefaultConfigFile() {
-		return employeeFile;
-	}
-	
-	@Override
-	protected String getDefaultUrl() {
-		return employeeUrl;
-	}
 
 	@Override
 	protected void parseLoadData(String jsonStr) {
@@ -101,7 +91,9 @@ public class EmployeeManager extends BaseOrgManager{
 		}
 		
 		if (datasource != null && !datasource.containsKey(requestMode)) { // 初始读取配置文件
-			initData(context,new RequestNetorLocalJson());
+			RequestNetorLocalJson req = new RequestNetorLocalJson();
+			req.url = requestMode;
+			initData(context,req);
 		} else { // 从缓存中读取配置信息
 			employees = datasource.get(requestMode);
 			resultDatas();
@@ -116,8 +108,7 @@ public class EmployeeManager extends BaseOrgManager{
 		//加载网络数据
 		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=20e70823f62a42a68cd8e5cb29454234";
 		requestMode = employeeUrl;
-		
-		System.out.println(departmentId + "--------" + employeeUrl);
+
 		getDetailData(context);
 	}
 }

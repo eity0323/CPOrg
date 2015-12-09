@@ -11,7 +11,11 @@ import android.os.Handler;
 import android.util.TypedValue;
 
 import java.security.InvalidParameterException;
-
+/**
+ * 下拉刷新图标，用于PullRefreshLayout.java
+ * @author sien
+ *
+ */
 class CirclesDrawable extends RefreshDrawable implements Runnable {
 
     private static final float MAX_LEVEL = 10000;

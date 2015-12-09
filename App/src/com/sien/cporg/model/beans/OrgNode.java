@@ -9,28 +9,24 @@ import java.util.List;
 public class OrgNode {
 	private OrgNode parent;// 父节点
 	private List<OrgNode> children = new ArrayList<OrgNode>();// 子节点
-	private Employee employees;
+	private Employee employees;//成员
 	
+	/*inner extend*/
 	private boolean isChecked = false;// 是否处于选中状态
 	private boolean isExpanded = true;// 是否处于展开状态
 	private boolean hasCheckBox = true;// 是否拥有复选框
 	
 	/*组织架构数据结构*/
-	private String CAbbrName;// 部门简称
-	private String CDptId;// 部门ID
-	private String CLevel;// 部门层级
-	private String CName;// 部门全称
-	private String CParentId;// 上级部门id
-	private String NCount;// 部门中人数
+	private String depName;// 部门简称
+	private String depId;// 部门ID
+	private String depLevel;// 部门层级
+	private String depFullName;// 部门全称
+	private String parentId;// 上级部门id
+	private String depMemberCount;// 部门中人数
 	
 
 	/**
 	 * Node构造函数
-	 * 
-	 * @param text
-	 *            节点显示的文字
-	 * @param value
-	 *            节点的值
 	 */
 	public OrgNode(Employee employees) {
 		this.employees = employees;
@@ -58,56 +54,56 @@ public class OrgNode {
 		return this.parent;
 	}
 	
-	/**组织架构数据结构*/
-	public String getCAbbrName() {
-		return CAbbrName;
+	/**组织架构部门数据结构*/
+	public String getDepName() {
+		return depName;
 	}
 
-	public void setCAbbrName(String cAbbrName) {
-		CAbbrName = cAbbrName;
+	public void setDepName(String depName) {
+		this.depName = depName;
 	}
 
-	public String getCDptId() {
-		return CDptId;
+	public String getDepId() {
+		return depId;
 	}
 
-	public void setCDptId(String cDptId) {
-		CDptId = cDptId;
+	public void setDepId(String depId) {
+		this.depId = depId;
 	}
 
-	public String getCLevel() {
-		return CLevel;
+	public String getDepLevel() {
+		return depLevel;
 	}
 
-	public void setCLevel(String cLevel) {
-		CLevel = cLevel;
+	public void setDepLevel(String depLevel) {
+		this.depLevel = depLevel;
 	}
 
-	public String getCName() {
-		return CName;
+	public String getDepFullName() {
+		return depFullName;
 	}
 
-	public void setCName(String cName) {
-		CName = cName;
+	public void setDepFullName(String depFullName) {
+		this.depFullName = depFullName;
 	}
 
-	public String getCParentId() {
-		return CParentId;
+	public String getParentId() {
+		return parentId;
 	}
 
-	public void setCParentId(String cParentId) {
-		CParentId = cParentId;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
-	public String getNCount() {
-		return NCount;
+	public String getDepMemberCount() {
+		return depMemberCount;
 	}
 
-	public void setNCount(String nCount) {
-		NCount = nCount;
+	public void setDepMemberCount(String depMemberCount) {
+		this.depMemberCount = depMemberCount;
 	}
 	
-	/*组织架构成员*/
+	/*组织架构成员数据*/
 	public Employee getEmployee() {
 		return employees;
 	}

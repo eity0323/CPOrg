@@ -10,6 +10,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+/**
+ * 加载提示框
+ * @author sien
+ *
+ */
 public class LoadingDialog extends Dialog {
 
 	private TextView dialogLoadingText;

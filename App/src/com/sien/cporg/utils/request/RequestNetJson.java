@@ -2,6 +2,7 @@ package com.sien.cporg.utils.request;
 
 import java.io.IOException;
 
+import com.sien.cporg.utils.Params;
 import com.sien.cporg.utils.log.NLog;
 import com.sien.cporg.utils.net.NetworkUtils;
 import com.sien.cporg.utils.net.OkHttpUtil;
@@ -16,10 +17,16 @@ import android.text.TextUtils;
  * @author sien
  *
  */
-public class RequestNetJson implements IRequestData {
+public class RequestNetJson extends BaseRequestData {
+	
+	private String defaultUrl = Params.ORG_CONFIG_URL;
 
 	@Override
-	public String requestData(Context context, String url) {
+	public String requestData(Context context) {
+		if(TextUtils.isEmpty(url)){
+			url = defaultUrl;
+		}
+		
 		String result = "";
 		if (NetworkUtils.isNetworkAvailable(context)) {			//有网络
 			try {
