@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/im_theme_bg_color"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/im_listview_search_edit"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="9dip"
+        android:background="@drawable/basic_skin_icon_search_edt_bg"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:text="搜索联系人"
+        android:textColor="#abb1b6"
+        android:textSize="@dimen/im_text_size_normal14" />
+
+</LinearLayout>

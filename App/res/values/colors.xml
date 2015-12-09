@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="red">#FFC93437</color>
+    <color name="blue">#FF375BF1</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="green">#FF34A350</color>
+    
+    <color name="im_theme_font_color">#232323</color>
+    <color name="im_theme_font_sub_color">#808488</color>
+    <color name="im_theme_font_sel_color">#0074E7</color>
+    <color name="im_theme_bg_color">@color/basic_page_color</color>
+    <color name="basic_page_color">#f8f8f8</color>
+    
+    <color name="im_listview_item_select_bgcolor">#eeeeee</color>
+    <color name="im_listview_item_normal_bgcolor">@android:color/white</color>
+    
+    <color name="head_bgcolor">@color/basic_topbar_bg_color</color>
+    <color name="basic_topbar_bg_color">#dddddd</color>
+    
+    <color name="im_color_white">#ffffffff</color>
+    <color name="basic_title_text">#222424</color>
+    
+    <color name="basic_topbar_bg_press_color">#d2d2d2</color>
+
+</resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical|left">
+
+    <RelativeLayout
+        android:id="@+id/rlLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:minHeight="40dip">
+
+        <TextView
+            android:id="@+id/tvPadding"
+            android:layout_width="2dip"
+            android:layout_height="40dip"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical|left"
+            android:textColor="#ff000000"
+            android:textSize="16dip" >
+        </TextView>
+
+        <ImageView 
+            android:id="@+id/chbSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/im_skin_icon_checkbox_normal"
+            android:visibility="gone" />
+<!--         <CheckBox -->
+<!--             android:id="@+id/chbSelect" -->
+<!--             android:layout_width="40dip" -->
+<!--             android:layout_height="40dip" -->
+<!--             android:layout_alignParentRight="true" -->
+<!--             android:clickable="true" -->
+<!--             android:focusable="false" -->
+<!--             android:focusableInTouchMode="false" -->
+<!--             android:gravity="center_vertical" -->
+<!--             android:button="@drawable/im_selector_checkbox" -->
+<!--             android:text="" -->
+<!--             android:textColor="#ff000000" -->
+<!--             android:visibility="gone" > -->
+<!--         </CheckBox> -->
+
+        <ImageView
+            android:id="@+id/ivExEc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tvPadding"
+            android:gravity="center_vertical"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip" >
+        </ImageView>
+
+        <com.sien.cporg.view.widgets.CircleImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/ivExEc"
+            android:gravity="center_vertical"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_toLeftOf="@id/chbSelect"
+            android:layout_toRightOf="@id/ivIcon"
+            android:gravity="center_vertical|left"
+            android:paddingLeft="2dip"
+            android:textColor="#ff000000"
+            android:textSize="16dip" >
+        </TextView>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/cont_item_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/im_theme_bg_color"
+        android:visibility="visible" />
+
+</LinearLayout>

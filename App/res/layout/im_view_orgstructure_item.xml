@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="55dp" >
+
+    <ImageView
+        android:id="@+id/im_org_treenode_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/im_skin_icon_tree_close" />
+
+    <com.sien.cporg.view.widgets.CircleImageView
+        android:id="@+id/im_org_treenode_avatar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/im_org_treenode_icon"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/im_org_treenode_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/im_org_treenode_avatar"
+        android:text="@string/app_name"
+        android:textColor="@color/im_theme_font_sub_color"
+        android:textSize="@dimen/im_text_size_normal14" />
+
+    <TextView
+        android:id="@+id/im_org_treenode_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/im_theme_font_sub_color"
+        android:textSize="@dimen/im_text_size_normal14"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/im_org_treenode_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:button="@drawable/im_selector_checkbox"
+        android:enabled="false"
+        android:focusable="false"
+        android:visibility="gone" />
+
+</RelativeLayout>

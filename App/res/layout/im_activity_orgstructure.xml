@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/im_theme_bg_color"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/base_title_headerbar" />
+
+    <com.sien.cporg.view.widgets.PullRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/im_orgstructure_swiperefresh_Layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/basic_page_color"
+        app:colors="@array/google_colors" >
+
+        <ListView
+            android:id="@+id/im_orgstructure_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@android:color/transparent"
+            android:fadingEdge="none"
+            android:fadingEdgeLength="0dp"
+            android:focusable="true"
+            android:listSelector="@drawable/im_selector_item_bg_style2" >
+        </ListView>
+    </com.sien.cporg.view.widgets.PullRefreshLayout>
+
+</LinearLayout>
