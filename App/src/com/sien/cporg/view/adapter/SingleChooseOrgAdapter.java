@@ -19,13 +19,13 @@ import com.sien.cporg.utils.image.DisplayImageOptionsUtil;
 import com.sien.cporg.view.widgets.CircleImageView;
 
 /**
- * 多选组织架构适配器
+ * 单选组织架构适配器
  * @author sien
  *
  */
-public class MultiChooseOrgAdapter extends BaseOrgStructureAdapter {
+public class SingleChooseOrgAdapter extends BaseOrgStructureAdapter {
 
-	public MultiChooseOrgAdapter(Context context, OrgNode rootNode) {
+	public SingleChooseOrgAdapter(Context context, OrgNode rootNode) {
 		super(context, rootNode);
 	}
 	
