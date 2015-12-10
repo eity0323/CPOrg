@@ -16,7 +16,9 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sien.cporg.R;
 import com.sien.cporg.model.beans.OrgNode;
+import com.sien.cporg.utils.Params;
 import com.sien.cporg.utils.image.DisplayImageOptionsUtil;
+import com.sien.cporg.view.OrgStructureActivity;
 import com.sien.cporg.view.widgets.CircleImageView;
 
 /**
@@ -32,7 +34,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 	private List<OrgNode> allsCache = new ArrayList<OrgNode>();
 	private List<OrgNode> alls = new ArrayList<OrgNode>();
 	private OrgStructureAdapter oThis = this;
-	private boolean hasCheckBox = true;// 是否拥有复选框
+	private int hasCheckBox = OrgStructureActivity.NO_CHOOSE_MODE;// 是否拥有复选框
 	private int expandedIcon = -1;
 	private int collapsedIcon = -1;
 
@@ -113,7 +115,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 	 * 
 	 * @param hasCheckBox
 	 */
-	public void setCheckBox(boolean hasCheckBox) {
+	public void setCheckBox(int hasCheckBox) {
 		this.hasCheckBox = hasCheckBox;
 	}
 
@@ -168,7 +170,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * TODO cp.add
+	 * cp.add
 	 * 收缩其他节点，展开指定节点(因为子节点是动态读取数据的，position设置不准确，需要根据数据重新计算一遍position)
 	 * 
 	 * @param node
@@ -308,7 +310,7 @@ public class OrgStructureAdapter extends BaseAdapter {
 
 					if (n.getDepId() == null) { // 成员
 						// 是否显示复选框
-						if (n.hasCheckBox() && hasCheckBox) {
+						if (n.hasCheckBox() && hasCheckBox != OrgStructureActivity.NO_CHOOSE_MODE) {
 							holder.chbSelect.setVisibility(View.VISIBLE);
 						} else {
 							holder.chbSelect.setVisibility(View.GONE);
@@ -320,9 +322,12 @@ public class OrgStructureAdapter extends BaseAdapter {
 						holder.rlLayout.setBackgroundColor(0x00eeeeee);
 
 						String avatar = n.getEmployee().getPhoto();
-						if (TextUtils.isEmpty(avatar)) {
+						if(TextUtils.isEmpty(avatar)){
 							avatar = "drawable://" + R.drawable.basic_skin_icon_default_avatar_small;
+						}else{
+							avatar = Params.USER_HEADIMG_ROOT_URL + avatar;
 						}
+						
 						ImageLoader.getInstance().displayImage(avatar, holder.ivIcon, DisplayImageOptionsUtil.getUserAvatarSmallDisplayIO());
 
 					} else { // 部门

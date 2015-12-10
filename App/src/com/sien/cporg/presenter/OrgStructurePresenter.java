@@ -18,6 +18,7 @@ import com.sien.cporg.utils.clone.CloneUtils;
 import com.sien.cporg.utils.events.IMAPPEvents;
 import com.sien.cporg.utils.events.IMAPPEvents.LoadDepartmentEvent;
 import com.sien.cporg.utils.events.IMAPPEvents.LoadEmployeeEvent;
+import com.sien.cporg.view.OrgStructureActivity;
 import com.sien.cporg.view.interfaces.IOrgStructureAction;
 
 /**
@@ -42,7 +43,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	private String loginJid = "";
 	private String sessionId;
 	private String organiseRootName = "组织架构";
-	private boolean checkMode = false;
+	private int checkMode = OrgStructureActivity.NO_CHOOSE_MODE;
 
 	public OrgStructurePresenter(Context context) {
 		super();
@@ -73,7 +74,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	}
 
 	/** 设置参数 */
-	public void setParams(String organiseRootName, boolean checkMode,String sessionId) {
+	public void setParams(String organiseRootName, int checkMode,String sessionId) {
 		this.checkMode = checkMode;
 		this.organiseRootName = organiseRootName;
 		this.sessionId = sessionId;
@@ -170,7 +171,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 		findParentOrgNode(organizes, curNode.getDepId());
 
 		boolean needCheckSelected = false;
-		if (checkMode && initSelectedContactors.size() > 0) { // 选择模式下，且初始选中用户不为空时需要检测用户的初始选中状态
+		if (checkMode != OrgStructureActivity.NO_CHOOSE_MODE && initSelectedContactors.size() > 0) { // 选择模式下，且初始选中用户不为空时需要检测用户的初始选中状态
 			needCheckSelected = true;
 		}
 

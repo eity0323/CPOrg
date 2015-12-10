@@ -45,9 +45,9 @@ public class EmployeeManager extends BaseOrgManager{
 	}
 
 	@Override
-	protected void parseLoadData(String jsonStr) {
+	protected void parseLoadData(String result) {
 		try {
-			EmployeeResponse response = JsonMananger.jsonToBean(jsonStr, EmployeeResponse.class);
+			EmployeeResponse response = JsonMananger.jsonToBean(result, EmployeeResponse.class);
 			if (response != null) {
 				employees = response.getData();
 				
@@ -102,12 +102,12 @@ public class EmployeeManager extends BaseOrgManager{
 	
 	public void getDetailData(final Context context,String departmentId) {
 		//加载本地数据
-		employeeFile = departmentId;
-		requestMode = employeeFile;
+//		employeeFile = departmentId;
+//		requestMode = employeeFile;
 		
 		//加载网络数据
-//		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=20e70823f62a42a68cd8e5cb29454234";
-//		requestMode = employeeUrl;
+		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=20e70823f62a42a68cd8e5cb29454234";
+		requestMode = employeeUrl;
 
 		getDetailData(context);
 	}

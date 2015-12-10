@@ -42,6 +42,11 @@ import de.greenrobot.event.EventBus;
  * 
  */
 public class OrgStructureActivity extends Activity implements IOrgStructureAction {
+	
+	public static int NO_CHOOSE_MODE = 0;//非选择模式(默认)
+	public static int SINGLE_CHOOSE_MODE = 1;//单选
+	public static int MULTI_CHOOSE_MODE = 2;//多选
+	private int chooseMode = NO_CHOOSE_MODE;//选择模式
 
 	private ListView listview;
 	private TitleHeaderBar titleBar;
@@ -56,7 +61,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	private boolean inited = false;
 	private String loginJid;
 	private String organiseRootName = "组织架构";
-	private boolean checkMode = true;
+	
 	
 	private OrgStructurePresenter helper = null;
 	private boolean fromCache = true;
@@ -76,13 +81,13 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 		fromCache = true;
 		
 		initImageLoader();
-		
 		initView();
 	}
 	
 	/** 初始化imageLoader */
 	private void initImageLoader() {
-		DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
+		DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
+				.cacheOnDisk(true).build();
 
 		File cacheDir = new File(DEFAULT_SAVE_IMAGE_PATH);
 		ImageLoaderConfiguration imageconfig = new ImageLoaderConfiguration.Builder(this).threadPriority(Thread.NORM_PRIORITY - 2)
@@ -130,13 +135,13 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	}
 
 	private void initial() {
-//		checkMode = getIntent().getBooleanExtra("checkable", false);
+//		chooseMode = getIntent().getBooleanExtra("checkable", false);
 		
-		if(helper != null)	helper.setParams(organiseRootName,checkMode,"");
+		if(helper != null)	helper.setParams(organiseRootName,chooseMode,"");
 
 		titleBar.setTitleText(organiseRootName);
 
-		if (checkMode) { // 选择模式下，需要显示确定选择人数按钮
+		if (chooseMode == MULTI_CHOOSE_MODE) { // 选择模式下，需要显示确定选择人数按钮
 			rightBtn.setVisibility(View.VISIBLE);
 
 			String str = "确定";
@@ -144,7 +149,11 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 				str += helper.getInitSelectedContactors().size() > 0 ? "(" + helper.getInitSelectedContactors().size() + ")" : "";
 			}
 			rightBtn.setText(str);
-		} else {
+		} else if(chooseMode == NO_CHOOSE_MODE) {
+			rightBtn.setVisibility(View.GONE);
+		}else if(chooseMode == SINGLE_CHOOSE_MODE){
+			//TODO 单选模式
+		}else{
 			rightBtn.setVisibility(View.GONE);
 		}
 
@@ -152,14 +161,14 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 			rootNode = helper.initTree();
 			adapter = new OrgStructureAdapter(this, rootNode);
 			// 设置整个树是否显示复选框
-			adapter.setCheckBox(checkMode);
+			adapter.setCheckBox(chooseMode);
 			// 设置展开和折叠时图标
 			adapter.setExpandedCollapsedIcon(R.drawable.im_skin_icon_tree_open, R.drawable.im_skin_icon_tree_close);
 			// 设置默认展开级别
 			adapter.setExpandLevel(2);
 			
 			//选择模式监听点击事件
-			if(checkMode){
+			if(chooseMode != NO_CHOOSE_MODE){
 				adapter.setItemCheckedListener(new ItemCheckedListener() {
 					@Override
 					public boolean onClick(String userJid) {
@@ -240,7 +249,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 					Employee vo = curNode.getEmployee();
 					if (vo != null) {
 						// 选择模式不进入详情页面，显示模式则跳转至详情页面
-						if (checkMode) {
+						if (chooseMode == MULTI_CHOOSE_MODE) {
 							if((""+vo.getUserId()).equals(loginJid)){//不能选择自己
 								Toast.makeText(OrgStructureActivity.this, "请不要选择自己",Toast.LENGTH_SHORT).show();
 								return;
@@ -257,7 +266,9 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 							
 							updateBtnCount();
 							
-						} else {
+						} else if(chooseMode == SINGLE_CHOOSE_MODE) {
+							//TODO 单选模式
+						}else{
 
 							go2ContactorDetailActivity((""+vo.getUserId()), false);
 						}
@@ -387,7 +398,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 		rootNode = organize;
 		adapter.setDataSource(organize);
 
-		//TODO cp.add 获取数据之后，其他节点收起，只展开指定节点，
+		//cp.add 获取数据之后，其他节点收起，只展开指定节点，
 		adapter.ExpandOrCollapseNode(targetNode);
 	}
 	

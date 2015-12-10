@@ -3,6 +3,9 @@ package com.sien.cporg.utils.net;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -15,6 +18,7 @@ import com.squareup.okhttp.Response;
  */
 public class OkHttpUtil {
 	private static final OkHttpClient mOkHttpClient = new OkHttpClient();
+	private static Handler mDelivery = new Handler(Looper.getMainLooper());
     static{
         mOkHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
     }
@@ -91,4 +95,95 @@ public class OkHttpUtil {
     public static String attachHttpGetParam(String url, String name, String value){
         return url + "?" + name + "=" + value;
     }
+    
+    
+//    //cp.add
+//    public static void displayImage(final ImageView view,final String url,final int errorResId) throws IOException
+//    {
+//    	view.setTag(url);
+//    	//cp.add---------加载本地图片
+//    	if(url.startsWith("drawable://")){
+//    		 setErrorResId(view,url, errorResId);
+//    		return;
+//    	}
+//    	//end------------end
+//    	
+//    	final Request request = new Request.Builder()
+//        .url(url)
+//        .build();
+//		Call call = mOkHttpClient.newCall(request);
+//		call.enqueue(new Callback()
+//		{
+//		    @Override
+//		    public void onFailure(Request request, IOException e)
+//		    {
+//		        setErrorResId(view,url, errorResId);
+//		    }
+//		
+//		    @Override
+//		    public void onResponse(Response response)
+//		    {
+//		        InputStream is = null;
+//		        try
+//		        {
+//		            is = response.body().byteStream();
+//		            ImageUtils.ImageSize actualImageSize = ImageUtils.getImageSize(is);
+//		            ImageUtils.ImageSize imageViewSize = ImageUtils.getImageViewSize(view);
+//		            int inSampleSize = ImageUtils.calculateInSampleSize(actualImageSize, imageViewSize);
+//		            try
+//		            {
+//		                is.reset();
+//		            } catch (IOException e)
+//		            {
+//		                 Request request = new Request.Builder()
+//		                .url(url)
+//		                .build();
+//				        Call call = mOkHttpClient.newCall(request);
+//				        response = call.execute();
+//		                is = response.body().byteStream();
+//		            }
+//		
+//		            BitmapFactory.Options ops = new BitmapFactory.Options();
+//		            ops.inJustDecodeBounds = false;
+//		            ops.inSampleSize = inSampleSize;
+//		            final Bitmap bm = BitmapFactory.decodeStream(is, null, ops);
+//		            mDelivery.post(new Runnable()
+//		            {
+//		                @Override
+//		                public void run()
+//		                {
+//		                	if(view.getTag().equals(url))
+//		                		view.setImageBitmap(bm);
+//		                }
+//		            });
+//		        } catch (Exception e)
+//		        {
+//		            setErrorResId(view,url, errorResId);
+//		
+//		        } finally
+//		        {
+//		            if (is != null) try
+//		            {
+//		                is.close();
+//		            } catch (IOException e)
+//		            {
+//		                e.printStackTrace();
+//		            }
+//		        }
+//		    }
+//		});
+//    }
+//    
+//    private static void setErrorResId(final ImageView view,final String url, final int errorResId)
+//    {
+//        mDelivery.post(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//            	if(view.getTag().equals(url))
+//            		view.setImageResource(errorResId);
+//            }
+//        });
+//    }
 }

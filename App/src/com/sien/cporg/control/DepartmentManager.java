@@ -33,7 +33,7 @@ public class DepartmentManager extends BaseOrgManager{
 	
 	private String departmentFile = Params.ORG_CONFIG_FILE;//加载本地数据
 	private String departmentUrl = Params.ORG_CONFIG_URL;//加载网络数据
-	private String requestMode = departmentFile;
+	private String requestMode = departmentUrl;
 	
 	public static DepartmentManager getInstance() {
 		if (instance == null) {
@@ -47,13 +47,13 @@ public class DepartmentManager extends BaseOrgManager{
 	}
 
 	@Override
-	protected void parseLoadData(String jsonStr) {
-		if(TextUtils.isEmpty(jsonStr)){
+	protected void parseLoadData(String result) {
+		if(TextUtils.isEmpty(result)){
 			loaded = false;
 		}
 		
 		try {
-			DepartmentResponse response = JsonMananger.jsonToBean(jsonStr, DepartmentResponse.class);
+			DepartmentResponse response = JsonMananger.jsonToBean(result, DepartmentResponse.class);
 			if (response != null) {
 				datasource = response.getData();
 			}
