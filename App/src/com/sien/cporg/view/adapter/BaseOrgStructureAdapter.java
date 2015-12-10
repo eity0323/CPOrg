@@ -11,34 +11,25 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sien.cporg.R;
 import com.sien.cporg.model.beans.OrgNode;
-import com.sien.cporg.utils.Params;
-import com.sien.cporg.utils.image.DisplayImageOptionsUtil;
-import com.sien.cporg.view.OrgStructureActivity;
-import com.sien.cporg.view.widgets.CircleImageView;
 
 /**
- * 组织架构适配器
+ * 组织架构基类适配器
  * 
  * @author sien
  * 
  */
-public class OrgStructureAdapter extends BaseAdapter {
+public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 
-	private Context con;
-	private LayoutInflater lif;
-	private List<OrgNode> allsCache = new ArrayList<OrgNode>();
+	protected Context con;
+	protected LayoutInflater lif;
+	
+	protected List<OrgNode> allsCache = new ArrayList<OrgNode>();
 	private List<OrgNode> alls = new ArrayList<OrgNode>();
-	private OrgStructureAdapter oThis = this;
-	private int hasCheckBox = OrgStructureActivity.NO_CHOOSE_MODE;// 是否拥有复选框
 	private int expandedIcon = -1;
 	private int collapsedIcon = -1;
-
-	private ItemCheckedListener checkListener;
 
 	/**
 	 * TreeAdapter构造函数
@@ -47,14 +38,10 @@ public class OrgStructureAdapter extends BaseAdapter {
 	 * @param rootNode
 	 *            根节点
 	 */
-	public OrgStructureAdapter(Context context, OrgNode rootNode) {
+	public BaseOrgStructureAdapter(Context context, OrgNode rootNode) {
 		this.con = context;
 		this.lif = (LayoutInflater) con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		addNode(rootNode);
-	}
-
-	public void setItemCheckedListener(ItemCheckedListener listener) {
-		this.checkListener = listener;
 	}
 
 	public void setDataSource(OrgNode rootNode) {
@@ -74,29 +61,13 @@ public class OrgStructureAdapter extends BaseAdapter {
 			addNode(node.getChildren().get(i));
 		}
 	}
-
+	
 	// 复选框联动
 	private void checkNode(OrgNode node, boolean isChecked) {
 		node.setChecked(isChecked);
 		for (int i = 0; i < node.getChildren().size(); i++) {
 			checkNode(node.getChildren().get(i), isChecked);
 		}
-	}
-
-	/**
-	 * 获得选中节点
-	 * 
-	 * @return
-	 */
-	public List<OrgNode> getSeletedNodes() {
-		List<OrgNode> nodes = new ArrayList<OrgNode>();
-		for (int i = 0; i < allsCache.size(); i++) {
-			OrgNode n = allsCache.get(i);
-			if (n.isChecked()) {
-				nodes.add(n);
-			}
-		}
-		return nodes;
 	}
 
 	// 控制节点的展开和折叠
@@ -108,15 +79,6 @@ public class OrgStructureAdapter extends BaseAdapter {
 				alls.add(n);
 			}
 		}
-	}
-
-	/**
-	 * 设置是否拥有复选框
-	 * 
-	 * @param hasCheckBox
-	 */
-	public void setCheckBox(int hasCheckBox) {
-		this.hasCheckBox = hasCheckBox;
 	}
 
 	/**
@@ -232,121 +194,53 @@ public class OrgStructureAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return position;
 	}
+	
+	protected abstract View createViewWithViewHolder(int position, View view, ViewGroup parent);
+	protected abstract void bindView(int position,BaseViewHolder holder,OrgNode n);
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		ViewHolder holder = null;
+		BaseViewHolder holder = null;
 		if (view == null) {
-			view = this.lif.inflate(R.layout.im_view_orgstructure_item_ex, null);
-			holder = new ViewHolder();
-			holder.chbSelect = (ImageView) view.findViewById(R.id.chbSelect);
-
-//			// 复选框单击事件
-//			holder.chbSelect.setOnClickListener(new OnClickListener() {
-//
-//				@Override
-//				public void onClick(View v) {
-//					OrgNode n = (OrgNode) v.getTag();
-//					
-//					boolean checkStatus = n.isChecked();
-//					String tempjid = "";
-//					if (checkListener != null) {
-//						ContactorVO cvo = n.getContactor();
-//						if (cvo != null) {
-//							tempjid = cvo.userJid;
-//						}
-//
-//						boolean status = checkListener.onClick(tempjid);
-//						
-//						if (status) {
-//							checkStatus = true;
-//							((ImageView) v).setImageResource(R.drawable.im_skin_icon_checkbox_press);
-//						}
-//					}
-//					
-//					checkNode(n, checkStatus);
-//					oThis.notifyDataSetChanged();
-//				}
-//
-//			});
-			holder.ivIcon = (CircleImageView) view.findViewById(R.id.ivIcon);
-			holder.tvText = (TextView) view.findViewById(R.id.tvText);
-			holder.ivExEc = (ImageView) view.findViewById(R.id.ivExEc);
-			holder.rlLayout = (RelativeLayout) view.findViewById(R.id.rlLayout);
-			view.setTag(holder);
+			view = this.lif.inflate(R.layout.view_base_orgstructure_item, null);
+			createViewWithViewHolder(position,view,parent);
+			
+			holder = (BaseViewHolder) view.getTag();
+			holder.ivExEc = (ImageView) view.findViewById(R.id.org_execicon);
+			holder.rlLayout = (RelativeLayout) view.findViewById(R.id.org_item_container);
 		} else {
-			holder = (ViewHolder) view.getTag();
+			holder = (BaseViewHolder) view.getTag();
 		}
 
 		// 得到当前节点
 		final OrgNode n = alls.get(position);
+		
+		// 显示内容
+		bindView(position,holder,n);
 
+		// 背景 + 节点展开图标
 		if (position == 0) { // 根节点
-			// 显示文本
-			holder.tvText.setText(n.getEmployee().getName());
-			holder.tvText.setTextColor(con.getResources().getColor(R.color.im_theme_font_color));
-
-			holder.ivIcon.setVisibility(View.GONE);
-			holder.rlLayout.setBackgroundColor(0x00ffffff);
-
 			holder.ivExEc.setVisibility(View.VISIBLE);
 			holder.ivExEc.setImageResource(R.drawable.im_skin_icon_tree_icon);
-
+			holder.rlLayout.setBackgroundColor(0x00ffffff);
 			holder.rlLayout.setPadding(3, 3, 3, 3);
 		} else {
 			if (n != null) {
-				holder.chbSelect.setTag(n);
-				if(n.isChecked()){
-					holder.chbSelect.setImageResource(R.drawable.im_skin_icon_checkbox_press);
-				}else{
-					holder.chbSelect.setImageResource(R.drawable.im_skin_icon_checkbox_normal);
-				}
-
-				// 显示文本
-				holder.tvText.setText(n.getEmployee().getName());
-				holder.tvText.setTextColor(con.getResources().getColor(R.color.im_theme_font_sub_color));
-
 				if (n.isLeaf()) {
-
 					if (n.getDepId() == null) { // 成员
-						// 是否显示复选框
-						if (n.hasCheckBox() && hasCheckBox != OrgStructureActivity.NO_CHOOSE_MODE) {
-							holder.chbSelect.setVisibility(View.VISIBLE);
-						} else {
-							holder.chbSelect.setVisibility(View.GONE);
-						}
-
 						// 是叶节点 不显示展开和折叠状态图标
 						holder.ivExEc.setVisibility(View.GONE);
-						holder.ivIcon.setVisibility(View.VISIBLE);
 						holder.rlLayout.setBackgroundColor(0x00eeeeee);
-
-						String avatar = n.getEmployee().getPhoto();
-						if(TextUtils.isEmpty(avatar)){
-							avatar = "drawable://" + R.drawable.basic_skin_icon_default_avatar_small;
-						}else{
-							avatar = Params.USER_HEADIMG_ROOT_URL + avatar;
-						}
 						
-						ImageLoader.getInstance().displayImage(avatar, holder.ivIcon, DisplayImageOptionsUtil.getUserAvatarSmallDisplayIO());
-
 					} else { // 部门
-						holder.chbSelect.setVisibility(View.GONE);
-
 						holder.rlLayout.setBackgroundColor(0xffeeeeee);
-						holder.ivIcon.setVisibility(View.GONE);
 						// 单击时控制子节点展开和折叠,状态图标改变
 						holder.ivExEc.setVisibility(View.VISIBLE);
-
 						if (collapsedIcon != -1)
 							holder.ivExEc.setImageResource(collapsedIcon);
 					}
-
 				} else { // 部门
-					holder.chbSelect.setVisibility(View.GONE);
-
 					holder.rlLayout.setBackgroundColor(0xffeeeeee);
-					holder.ivIcon.setVisibility(View.GONE);
 					// 单击时控制子节点展开和折叠,状态图标改变
 					holder.ivExEc.setVisibility(View.VISIBLE);
 					if (n.isExpanded()) {
@@ -356,14 +250,11 @@ public class OrgStructureAdapter extends BaseAdapter {
 						if (collapsedIcon != -1)
 							holder.ivExEc.setImageResource(collapsedIcon);
 					}
-
 				}
 				// 控制缩进
-				// view.setPadding(35*n.getLevel(), 3,3, 3);
 				holder.rlLayout.setPadding(35 * n.getLevel(), 3, 3, 3);
 			}
 		}
-
 		return view;
 	}
 
@@ -372,15 +263,8 @@ public class OrgStructureAdapter extends BaseAdapter {
 	 * 列表项控件集合
 	 * 
 	 */
-	public class ViewHolder {
-		public ImageView chbSelect;// 选中与否
-		private CircleImageView ivIcon;// 图标
-		private TextView tvText;// 文本〉〉〉
-		private ImageView ivExEc;// 展开或折叠标记">"或"v"
-		private RelativeLayout rlLayout;
-	}
-
-	public interface ItemCheckedListener {
-		public boolean onClick(String userJid);
+	public class BaseViewHolder {
+		public ImageView ivExEc;// 展开或折叠标记">"或"v"
+		public RelativeLayout rlLayout;
 	}
 }

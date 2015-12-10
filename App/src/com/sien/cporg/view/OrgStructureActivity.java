@@ -25,8 +25,7 @@ import com.sien.cporg.model.beans.Department;
 import com.sien.cporg.model.beans.Employee;
 import com.sien.cporg.model.beans.OrgNode;
 import com.sien.cporg.presenter.OrgStructurePresenter;
-import com.sien.cporg.view.adapter.OrgStructureAdapter;
-import com.sien.cporg.view.adapter.OrgStructureAdapter.ItemCheckedListener;
+import com.sien.cporg.view.adapter.MultiChooseOrgAdapter;
 import com.sien.cporg.view.interfaces.IOrgStructureAction;
 import com.sien.cporg.view.widgets.LoadingDialog;
 import com.sien.cporg.view.widgets.PullRefreshLayout;
@@ -46,14 +45,14 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	public static int NO_CHOOSE_MODE = 0;//非选择模式(默认)
 	public static int SINGLE_CHOOSE_MODE = 1;//单选
 	public static int MULTI_CHOOSE_MODE = 2;//多选
-	private int chooseMode = NO_CHOOSE_MODE;//选择模式
+	private int chooseMode = MULTI_CHOOSE_MODE;//选择模式
 
 	private ListView listview;
 	private TitleHeaderBar titleBar;
 	private TextView rightBtn;
 	private PullRefreshLayout refreshLayout;
 	private View listHeader;
-	private OrgStructureAdapter adapter;
+	private MultiChooseOrgAdapter adapter;
 
 	private OrgNode curNode; // 当前节点
 	private OrgNode rootNode;
@@ -159,24 +158,24 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 
 		if(helper != null){
 			rootNode = helper.initTree();
-			adapter = new OrgStructureAdapter(this, rootNode);
+			adapter = new MultiChooseOrgAdapter(this, rootNode);
 			// 设置整个树是否显示复选框
-			adapter.setCheckBox(chooseMode);
+//			adapter.setCheckBox(chooseMode);
 			// 设置展开和折叠时图标
 			adapter.setExpandedCollapsedIcon(R.drawable.im_skin_icon_tree_open, R.drawable.im_skin_icon_tree_close);
 			// 设置默认展开级别
 			adapter.setExpandLevel(2);
 			
-			//选择模式监听点击事件
-			if(chooseMode != NO_CHOOSE_MODE){
-				adapter.setItemCheckedListener(new ItemCheckedListener() {
-					@Override
-					public boolean onClick(String userJid) {
-						updateBtnCount();
-						return memberCheck(userJid);
-					}
-				});
-			}
+//			//选择模式监听点击事件
+//			if(chooseMode != NO_CHOOSE_MODE){
+//				adapter.setItemCheckedListener(new ItemCheckedListener() {
+//					@Override
+//					public boolean onClick(String userJid) {
+//						updateBtnCount();
+//						return memberCheck(userJid);
+//					}
+//				});
+//			}
 		}
 
 		listview.addHeaderView(listHeader);

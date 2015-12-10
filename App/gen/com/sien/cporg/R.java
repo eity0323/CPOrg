@@ -99,31 +99,30 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int im_skin_icon_tree_open=0x7f02000e;
     }
     public static final class id {
-        public static final int chbSelect=0x7f0a0016;
+        public static final int chbSelect=0x7f0a0011;
         public static final int circles=0x7f0a0000;
-        public static final int cont_item_line=0x7f0a001a;
-        public static final int dialog_loading_text=0x7f0a001c;
+        public static final int cont_item_line=0x7f0a0015;
+        public static final int dialog_loading_text=0x7f0a0017;
         public static final int im_listview_search_edit=0x7f0a000e;
-        public static final int im_org_treenode_avatar=0x7f0a0010;
-        public static final int im_org_treenode_check=0x7f0a0013;
-        public static final int im_org_treenode_count=0x7f0a0012;
-        public static final int im_org_treenode_icon=0x7f0a000f;
-        public static final int im_org_treenode_label=0x7f0a0011;
         public static final int im_orgstructure_listview=0x7f0a000d;
         public static final int im_orgstructure_swiperefresh_Layout=0x7f0a000c;
-        public static final int imageview=0x7f0a001b;
-        public static final int ivExEc=0x7f0a0017;
-        public static final int ivIcon=0x7f0a0018;
+        public static final int imageview=0x7f0a0016;
+        public static final int ivExEc=0x7f0a0012;
+        public static final int ivIcon=0x7f0a0013;
         public static final int ly_title_bar_center=0x7f0a0009;
         public static final int ly_title_bar_left=0x7f0a0005;
         public static final int ly_title_bar_right=0x7f0a0007;
         public static final int material=0x7f0a0001;
+        public static final int org_content_layout=0x7f0a001a;
+        public static final int org_execicon=0x7f0a0019;
+        public static final int org_item_container=0x7f0a0018;
+        public static final int org_item_line=0x7f0a001b;
         public static final int ring=0x7f0a0002;
-        public static final int rlLayout=0x7f0a0014;
+        public static final int rlLayout=0x7f0a000f;
         public static final int rl_title=0x7f0a0004;
         public static final int titleBar=0x7f0a000b;
-        public static final int tvPadding=0x7f0a0015;
-        public static final int tvText=0x7f0a0019;
+        public static final int tvPadding=0x7f0a0010;
+        public static final int tvText=0x7f0a0014;
         public static final int tv_title_bar_left=0x7f0a0006;
         public static final int tv_title_bar_right=0x7f0a0008;
         public static final int tv_title_bar_title=0x7f0a000a;
@@ -134,9 +133,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int base_title_headerbar=0x7f030001;
         public static final int im_activity_orgstructure=0x7f030002;
         public static final int im_view_listview_searchbar=0x7f030003;
-        public static final int im_view_orgstructure_item=0x7f030004;
-        public static final int im_view_orgstructure_item_ex=0x7f030005;
-        public static final int layout_loading_panel=0x7f030006;
+        public static final int im_view_orgstructure_item_ex=0x7f030004;
+        public static final int layout_loading_panel=0x7f030005;
+        public static final int view_base_orgstructure_item=0x7f030006;
+        public static final int view_multi_choose_org_item=0x7f030007;
+        public static final int view_normal_org_item=0x7f030008;
     }
     public static final class string {
         public static final int action_settings=0x7f080002;
