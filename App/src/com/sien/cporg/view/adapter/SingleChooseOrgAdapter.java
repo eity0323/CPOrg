@@ -49,7 +49,7 @@ public class SingleChooseOrgAdapter extends BaseOrgStructureAdapter {
 	protected View createViewWithViewHolder(int position, View view, ViewGroup parent) {
 		ViewHolder holder = new ViewHolder();
 		if(view.findViewById(R.id.ivIcon) == null){
-			ViewStub vs = (ViewStub) view.findViewById(R.id.org_content_layout);
+			ViewStub vs = (ViewStub) view.findViewById(viewStubResId);
 			vs.setLayoutResource(R.layout.view_multi_choose_org_item);
 			View tempv = vs.inflate();
 			

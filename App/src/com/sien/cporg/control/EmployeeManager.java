@@ -63,13 +63,13 @@ public class EmployeeManager extends BaseOrgManager{
 	protected void resultDatas() {
 		int status = LoadEmployeeEvent.STATUS_FAIL;
 
-		if (datasource != null) {
+		if (employees != null) {
 			status = LoadEmployeeEvent.STATUS_SUCCESS;
 			EventBus.getDefault().post(new IMAPPEvents.LoadEmployeeEvent(status, employees));
 			return;
 		}
 
-		EventBus.getDefault().post(new IMAPPEvents.LoadEmployeeEvent(status, employees));
+		EventBus.getDefault().post(new IMAPPEvents.LoadEmployeeEvent(status, null));
 	}
 
 	/**
@@ -102,12 +102,12 @@ public class EmployeeManager extends BaseOrgManager{
 	
 	public void getDetailData(final Context context,String departmentId) {
 		//加载本地数据
-//		employeeFile = departmentId;
-//		requestMode = employeeFile;
+		employeeFile = departmentId;
+		requestMode = employeeFile;
 		
 		//加载网络数据
-		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=20e70823f62a42a68cd8e5cb29454234";
-		requestMode = employeeUrl;
+//		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=20e70823f62a42a68cd8e5cb29454234";
+//		requestMode = employeeUrl;
 
 		getDetailData(context);
 	}

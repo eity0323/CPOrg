@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+	<head>
+		<title>phonegap exam</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+        <script type="text/javascript" src="cordova.js"></script>
+	    <script type="text/javascript" src="cordova_plugins.js"></script>
+        
+        <script type="text/javascript">
+        	phone_gap.initialize();
+        	
+        	function isLogin(){
+				phone_gap.isLogin(function(json){
+					alert(json);
+				},function(){
+				
+				});
+            }
+            
+            function showhead(){
+				phone_gap.showhead("title", true, function(){},function(){});
+            }
+            
+            
+            function showShare(){
+				phone_gap.showShare("title", "content", function(){},function(){});
+            }
+            
+            function showpage(){
+				phone_gap.showpage("http://www.baidu.com", function(){},function(){});
+            }
+            
+            function showPhoto(){
+				phone_gap.showPhoto(function(json){
+					alert(json)
+				},function(json){
+					alert(json)
+				});
+            }
+            
+             function getLocation(){
+				phone_gap.getLocation(function(json){
+					alert(json)
+				},function(){
+				
+				});
+            }
+            
+            function exit(){
+				phone_gap.exit(function(){},function(){});
+            }
+            
+            function startActivity(){
+				phone_gap.startActivity("LoginActivity", function(){
+					alert("success");
+				},function(){
+					
+				});
+            }
+            
+             function callPhone(){
+				phone_gap.callPhone("tel:18938856035");
+            }
+            
+            
+            function toast(){
+				phone_gap.toast("toast message");
+            }
+            
+            function alertDialog(){
+				phone_gap.alertDialog("alertDialog", function(){
+					alert("alertDialog success");
+				},function(){
+					
+				});
+            }
+            
+        </script>
+	</head>
+	
+	<body>
+		<div id="afui">
+			<div id="header">
+				<br><br>
+				<input type="button" name="isLogin" onClick="isLogin();" value="isLogin"/>
+				<br><br>
+				<input type="button" name="showhead" onClick="showhead();" value="showhead"/>
+				<br><br>
+				<input type="button" name="showShare" onClick="showShare();" value="showShare"/>
+				<br><br>
+				<input type="button" name="showPhoto" onClick="showPhoto();" value="showPhoto"/>
+				<br><br>
+				<input type="button" name="showpage" onClick="showpage();" value="showpage"/>
+				<br><br>
+				<input type="button" name="getLocation" onClick="getLocation();" value="getLocation"/>
+				<br><br>
+				<input type="button" name="startActivity" onClick="startActivity();" value="startActivity"/>
+				<br><br>
+				<input type="button" name="callPhone" onClick="callPhone();" value="callPhone"/>
+				<br><br>
+				<input type="button" name="toast" onClick="toast();" value="toast"/>
+				<br><br>
+				<input type="button" name="alertDialog" onClick="alertDialog();" value="alertDialog"/>
+				<br><br>
+				<input type="button" name="exit" onClick="exit();" value="exit"/>
+				<br><br>
+            </div>
+	    </div>
+	</body>
+</html>

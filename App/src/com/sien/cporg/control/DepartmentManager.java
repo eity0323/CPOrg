@@ -91,7 +91,7 @@ public class DepartmentManager extends BaseOrgManager{
 	public void getDetailData(final Context context) {
 		if (context == null) {
 			NLog.d("DepartmentManager", "DepartmentManager context can not be null");
-			EventBus.getDefault().post(new IMAPPEvents.LoadEmployeeEvent(LoadEmployeeEvent.STATUS_FAIL, null));
+			EventBus.getDefault().post(new IMAPPEvents.LoadDepartmentEvent(LoadDepartmentEvent.STATUS_FAIL, null));
 			return;
 		}
 

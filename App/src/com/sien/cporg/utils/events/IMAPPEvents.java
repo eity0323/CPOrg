@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sien.cporg.model.beans.Department;
 import com.sien.cporg.model.beans.Employee;
+import com.sien.cporg.model.beans.Organize;
 
 /**
  * 事件管理类
@@ -56,6 +57,27 @@ public class IMAPPEvents {
 		}
 	}
 
+	/** 加载部门员工数据 */
+	public static class LoadOrganizeEvent {
+		public static int STATUS_SUCCESS = 0;
+		public static int STATUS_FAIL = 1;
+
+		private int status;
+		private Organize items;
+
+		public LoadOrganizeEvent(int status, Organize data) {
+			this.status = status;
+			this.items = data;
+		}
+
+		public int getStatus() {
+			return status;
+		}
+
+		public Organize getData() {
+			return items;
+		}
+	}
 
 	/** 搜索企业员工 */
 	public static class searchEmployeeEvent {

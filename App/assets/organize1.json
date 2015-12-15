@@ -1,0 +1,51 @@
+{
+"data": {
+	"level": 2,
+	"department":[
+		{
+		  "level": 2,
+	      "departmentId": 2180,
+	      "abbrName": null,
+	      "name": "技术部",
+	      "orderNum": 1,
+	      "parentId": 1980
+		},
+		{
+		  "level": 2,
+	      "departmentId": 2193,
+	      "abbrName": null,
+	      "name": "测试部",
+	      "orderNum": 2,
+	      "parentId": 1980
+		}
+	],
+	"employees":[
+			{
+				"employeeId": 3895,
+				"departmentId": null,
+				"parentId": 1980,
+				"userId": 3930,
+				"post": null,
+				"status": true,
+				"brithday": null,
+				"nation": null,
+				"marriage": null,
+				"degree": null,
+				"enterTime": null,
+				"regTime": null,
+				"dimissionTime": null,
+				"account": "18912222291",
+				"email": "manlu@suneee.com",
+				"mobile": "18912222291",
+				"name": "飞流",
+				"nick": "飞流",
+				"sex": null,
+				"userName": "1000003940",
+				"photo": null,
+				"address": null,
+				"signature": null,
+				"backgroundImg": null
+			}
+		  ]
+	}
+}

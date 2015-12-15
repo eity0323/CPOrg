@@ -1,0 +1,936 @@
+{
+"data": [
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 1981,
+          "abbrName": null,
+          "name": "总裁办",
+          "orderNum": 0,
+          "parentId": 1980
+        }
+      ],
+      "level": 1,
+      "departmentId": 1980,
+      "abbrName": null,
+      "name": "董事会",
+      "orderNum": 1,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 1994,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 1993
+        },
+        {
+          "level": 2,
+          "departmentId": 1995,
+          "abbrName": null,
+          "name": "招聘部",
+          "orderNum": 0,
+          "parentId": 1993
+        },
+        {
+          "level": 2,
+          "departmentId": 1996,
+          "abbrName": null,
+          "name": "HR重庆中心",
+          "orderNum": 0,
+          "parentId": 1993
+        },
+        {
+          "level": 2,
+          "departmentId": 1997,
+          "abbrName": null,
+          "name": "HR北京中心",
+          "orderNum": 0,
+          "parentId": 1993
+        },
+        {
+          "level": 2,
+          "departmentId": 1998,
+          "abbrName": null,
+          "name": "HR上海中心",
+          "orderNum": 0,
+          "parentId": 1993
+        },
+        {
+          "level": 2,
+          "departmentId": 1999,
+          "abbrName": null,
+          "name": "HR广州中心",
+          "orderNum": 0,
+          "parentId": 1993
+        },
+        {
+          "level": 2,
+          "departmentId": 2000,
+          "abbrName": null,
+          "name": "HR深圳中心",
+          "orderNum": 0,
+          "parentId": 1993
+        }
+      ],
+      "level": 1,
+      "departmentId": 1993,
+      "abbrName": null,
+      "name": "人力资源中心",
+      "orderNum": 2,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 1983,
+          "abbrName": null,
+          "name": "办公室",
+          "orderNum": 0,
+          "parentId": 1982
+        },
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 1988,
+              "abbrName": null,
+              "name": "公共关系部（上海）",
+              "orderNum": 0,
+              "parentId": 1984
+            },
+            {
+              "level": 3,
+              "departmentId": 1987,
+              "abbrName": null,
+              "name": "公共关系部（北京）",
+              "orderNum": 0,
+              "parentId": 1984
+            },
+            {
+              "level": 3,
+              "departmentId": 1986,
+              "abbrName": null,
+              "name": "公共关系部（重庆）",
+              "orderNum": 0,
+              "parentId": 1984
+            },
+            {
+              "level": 3,
+              "departmentId": 1985,
+              "abbrName": null,
+              "name": "管理部",
+              "orderNum": 0,
+              "parentId": 1984
+            },
+            {
+              "level": 3,
+              "departmentId": 1990,
+              "abbrName": null,
+              "name": "公共关系部（苏州）",
+              "orderNum": 0,
+              "parentId": 1984
+            },
+            {
+              "level": 3,
+              "departmentId": 1989,
+              "abbrName": null,
+              "name": "公共关系部（深圳）",
+              "orderNum": 0,
+              "parentId": 1984
+            }
+          ],
+          "level": 2,
+          "departmentId": 1984,
+          "abbrName": null,
+          "name": "公共关系部",
+          "orderNum": 0,
+          "parentId": 1982
+        },
+        {
+          "level": 2,
+          "departmentId": 1991,
+          "abbrName": null,
+          "name": "行政部",
+          "orderNum": 0,
+          "parentId": 1982
+        },
+        {
+          "level": 2,
+          "departmentId": 1992,
+          "abbrName": null,
+          "name": "外派人员",
+          "orderNum": 0,
+          "parentId": 1982
+        }
+      ],
+      "level": 1,
+      "departmentId": 1982,
+      "abbrName": null,
+      "name": "行政中心",
+      "orderNum": 2,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2002,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 2001
+        },
+        {
+          "level": 2,
+          "departmentId": 2003,
+          "abbrName": null,
+          "name": "预算部",
+          "orderNum": 0,
+          "parentId": 2001
+        },
+        {
+          "level": 2,
+          "departmentId": 2004,
+          "abbrName": null,
+          "name": "结算部",
+          "orderNum": 0,
+          "parentId": 2001
+        },
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2009,
+              "abbrName": null,
+              "name": "核算部（苏州）",
+              "orderNum": 0,
+              "parentId": 2005
+            },
+            {
+              "level": 3,
+              "departmentId": 2008,
+              "abbrName": null,
+              "name": "核算部（上海）",
+              "orderNum": 0,
+              "parentId": 2005
+            },
+            {
+              "level": 3,
+              "departmentId": 2010,
+              "abbrName": null,
+              "name": "核算部（广州）",
+              "orderNum": 0,
+              "parentId": 2005
+            },
+            {
+              "level": 3,
+              "departmentId": 2011,
+              "abbrName": null,
+              "name": "核算部（深圳）",
+              "orderNum": 0,
+              "parentId": 2005
+            },
+            {
+              "level": 3,
+              "departmentId": 2007,
+              "abbrName": null,
+              "name": "核算部（北京）",
+              "orderNum": 0,
+              "parentId": 2005
+            },
+            {
+              "level": 3,
+              "departmentId": 2006,
+              "abbrName": null,
+              "name": "核算部（重庆）",
+              "orderNum": 0,
+              "parentId": 2005
+            }
+          ],
+          "level": 2,
+          "departmentId": 2005,
+          "abbrName": null,
+          "name": "核算部",
+          "orderNum": 0,
+          "parentId": 2001
+        }
+      ],
+      "level": 1,
+      "departmentId": 2001,
+      "abbrName": null,
+      "name": "财务中心",
+      "orderNum": 2,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2013,
+          "abbrName": null,
+          "name": "经营管理中心",
+          "orderNum": 0,
+          "parentId": 2012
+        }
+      ],
+      "level": 1,
+      "departmentId": 2012,
+      "abbrName": null,
+      "name": "经营管理中心",
+      "orderNum": 4,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2073,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 2072
+        },
+        {
+          "level": 2,
+          "departmentId": 2074,
+          "abbrName": null,
+          "name": "传播部",
+          "orderNum": 0,
+          "parentId": 2072
+        },
+        {
+          "level": 2,
+          "departmentId": 2075,
+          "abbrName": null,
+          "name": "场景部",
+          "orderNum": 0,
+          "parentId": 2072
+        },
+        {
+          "level": 2,
+          "departmentId": 2076,
+          "abbrName": null,
+          "name": "运营部",
+          "orderNum": 0,
+          "parentId": 2072
+        }
+      ],
+      "level": 1,
+      "departmentId": 2072,
+      "abbrName": null,
+      "name": "广东测试港",
+      "orderNum": 5,
+      "parentId": null
+    },
+    {
+      "level": 1,
+      "departmentId": 2014,
+      "abbrName": null,
+      "name": "学习中心",
+      "orderNum": 6,
+      "parentId": null
+    },
+    {
+      "level": 1,
+      "departmentId": 2015,
+      "abbrName": null,
+      "name": "财务经济委员会",
+      "orderNum": 7,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2018,
+              "abbrName": null,
+              "name": "管理部",
+              "orderNum": 0,
+              "parentId": 2017
+            },
+            {
+              "level": 3,
+              "departmentId": 2019,
+              "abbrName": null,
+              "name": "架构设计部",
+              "orderNum": 0,
+              "parentId": 2017
+            },
+            {
+              "level": 3,
+              "departmentId": 2020,
+              "abbrName": null,
+              "name": "交互设计部",
+              "orderNum": 0,
+              "parentId": 2017
+            },
+            {
+              "level": 3,
+              "departmentId": 2021,
+              "abbrName": null,
+              "name": "项目管理部",
+              "orderNum": 0,
+              "parentId": 2017
+            }
+          ],
+          "level": 2,
+          "departmentId": 2017,
+          "abbrName": null,
+          "name": "秘书处",
+          "orderNum": 0,
+          "parentId": 2016
+        },
+        {
+          "level": 2,
+          "departmentId": 2022,
+          "abbrName": null,
+          "name": "测试组织S",
+          "orderNum": 0,
+          "parentId": 2016
+        },
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2024,
+              "abbrName": null,
+              "name": "管理部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2025,
+              "abbrName": null,
+              "name": "用户体验部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2026,
+              "abbrName": null,
+              "name": "终端开发部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2027,
+              "abbrName": null,
+              "name": "测试部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2028,
+              "abbrName": null,
+              "name": "产品管理部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2029,
+              "abbrName": null,
+              "name": "项目管理部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2030,
+              "abbrName": null,
+              "name": "BHR",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2031,
+              "abbrName": null,
+              "name": "架构部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2032,
+              "abbrName": null,
+              "name": "平台开发一部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2033,
+              "abbrName": null,
+              "name": "平台开发二部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2034,
+              "abbrName": null,
+              "name": "客户化研发部",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2035,
+              "abbrName": null,
+              "name": "深圳研发中心",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2036,
+              "abbrName": null,
+              "name": "广州研发中心",
+              "orderNum": 0,
+              "parentId": 2023
+            },
+            {
+              "level": 3,
+              "departmentId": 2037,
+              "abbrName": null,
+              "name": "重庆研发中心",
+              "orderNum": 0,
+              "parentId": 2023
+            }
+          ],
+          "level": 2,
+          "departmentId": 2023,
+          "abbrName": null,
+          "name": "测试组织T",
+          "orderNum": 0,
+          "parentId": 2016
+        },
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2043,
+              "abbrName": null,
+              "name": "玉柴项目部",
+              "orderNum": 0,
+              "parentId": 2038
+            },
+            {
+              "level": 3,
+              "departmentId": 2039,
+              "abbrName": null,
+              "name": "管理部",
+              "orderNum": 0,
+              "parentId": 2038
+            },
+            {
+              "level": 3,
+              "departmentId": 2040,
+              "abbrName": null,
+              "name": "规划研发部",
+              "orderNum": 0,
+              "parentId": 2038
+            },
+            {
+              "level": 3,
+              "departmentId": 2041,
+              "abbrName": null,
+              "name": "建设部",
+              "orderNum": 0,
+              "parentId": 2038
+            },
+            {
+              "level": 3,
+              "departmentId": 2042,
+              "abbrName": null,
+              "name": "运维部",
+              "orderNum": 0,
+              "parentId": 2038
+            }
+          ],
+          "level": 2,
+          "departmentId": 2038,
+          "abbrName": null,
+          "name": "测试组织I",
+          "orderNum": 0,
+          "parentId": 2016
+        }
+      ],
+      "level": 1,
+      "departmentId": 2016,
+      "abbrName": null,
+      "name": "飞轮技术委员会",
+      "orderNum": 7,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2047,
+              "abbrName": null,
+              "name": "综合部",
+              "orderNum": 0,
+              "parentId": 2046
+            },
+            {
+              "level": 3,
+              "departmentId": 2048,
+              "abbrName": null,
+              "name": "伊利项目部",
+              "orderNum": 0,
+              "parentId": 2046
+            }
+          ],
+          "level": 2,
+          "departmentId": 2046,
+          "abbrName": null,
+          "name": "北京中心",
+          "orderNum": 0,
+          "parentId": 2045
+        },
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2050,
+              "abbrName": null,
+              "name": "综合部",
+              "orderNum": 0,
+              "parentId": 2049
+            },
+            {
+              "level": 3,
+              "departmentId": 2051,
+              "abbrName": null,
+              "name": "HV发展部",
+              "orderNum": 0,
+              "parentId": 2049
+            },
+            {
+              "level": 3,
+              "departmentId": 2052,
+              "abbrName": null,
+              "name": "财务服务中心",
+              "orderNum": 0,
+              "parentId": 2049
+            },
+            {
+              "level": 3,
+              "departmentId": 2053,
+              "abbrName": null,
+              "name": "质培部",
+              "orderNum": 0,
+              "parentId": 2049
+            },
+            {
+              "level": 3,
+              "departmentId": 2054,
+              "abbrName": null,
+              "name": "李宁项目部",
+              "orderNum": 0,
+              "parentId": 2049
+            },
+            {
+              "level": 3,
+              "departmentId": 2055,
+              "abbrName": null,
+              "name": "天猫超市项目部",
+              "orderNum": 0,
+              "parentId": 2049
+            },
+            {
+              "level": 3,
+              "departmentId": 2056,
+              "abbrName": null,
+              "name": "后厨项目部",
+              "orderNum": 0,
+              "parentId": 2049
+            }
+          ],
+          "level": 2,
+          "departmentId": 2049,
+          "abbrName": null,
+          "name": "上海中心",
+          "orderNum": 0,
+          "parentId": 2045
+        },
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2058,
+              "abbrName": null,
+              "name": "综合部",
+              "orderNum": 0,
+              "parentId": 2057
+            },
+            {
+              "level": 3,
+              "departmentId": 2059,
+              "abbrName": null,
+              "name": "质培部",
+              "orderNum": 0,
+              "parentId": 2057
+            },
+            {
+              "level": 3,
+              "departmentId": 2060,
+              "abbrName": null,
+              "name": "迪士尼项目部",
+              "orderNum": 0,
+              "parentId": 2057
+            }
+          ],
+          "level": 2,
+          "departmentId": 2057,
+          "abbrName": null,
+          "name": "广州中心",
+          "orderNum": 0,
+          "parentId": 2045
+        },
+        {
+          "level": 2,
+          "departmentId": 2061,
+          "abbrName": null,
+          "name": "重庆中心",
+          "orderNum": 0,
+          "parentId": 2045
+        }
+      ],
+      "level": 1,
+      "departmentId": 2045,
+      "abbrName": null,
+      "name": "公众网络轴基地",
+      "orderNum": 9,
+      "parentId": null
+    },
+    {
+      "level": 1,
+      "departmentId": 2044,
+      "abbrName": null,
+      "name": "科学创新委员会",
+      "orderNum": 9,
+      "parentId": null
+    },
+    {
+      "level": 1,
+      "departmentId": 2089,
+      "abbrName": null,
+      "name": "广东大白鲨",
+      "orderNum": 10,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2063,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 2062
+        },
+        {
+          "level": 2,
+          "departmentId": 2064,
+          "abbrName": null,
+          "name": "综合部",
+          "orderNum": 0,
+          "parentId": 2062
+        },
+        {
+          "subDptList": [
+            {
+              "level": 3,
+              "departmentId": 2066,
+              "abbrName": null,
+              "name": "运营发展中心",
+              "orderNum": 0,
+              "parentId": 2065
+            }
+          ],
+          "level": 2,
+          "departmentId": 2065,
+          "abbrName": null,
+          "name": "运营部",
+          "orderNum": 0,
+          "parentId": 2062
+        }
+      ],
+      "level": 1,
+      "departmentId": 2062,
+      "abbrName": null,
+      "name": "广东测试捷",
+      "orderNum": 11,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2068,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 2067
+        },
+        {
+          "level": 2,
+          "departmentId": 2069,
+          "abbrName": null,
+          "name": "关系部",
+          "orderNum": 0,
+          "parentId": 2067
+        },
+        {
+          "level": 2,
+          "departmentId": 2070,
+          "abbrName": null,
+          "name": "运营部",
+          "orderNum": 0,
+          "parentId": 2067
+        },
+        {
+          "level": 2,
+          "departmentId": 2071,
+          "abbrName": null,
+          "name": "传播部",
+          "orderNum": 0,
+          "parentId": 2067
+        }
+      ],
+      "level": 1,
+      "departmentId": 2067,
+      "abbrName": null,
+      "name": "广东测试湾",
+      "orderNum": 12,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2078,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 2077
+        },
+        {
+          "level": 2,
+          "departmentId": 2079,
+          "abbrName": null,
+          "name": "关系部",
+          "orderNum": 0,
+          "parentId": 2077
+        },
+        {
+          "level": 2,
+          "departmentId": 2080,
+          "abbrName": null,
+          "name": "传播部",
+          "orderNum": 0,
+          "parentId": 2077
+        },
+        {
+          "level": 2,
+          "departmentId": 2081,
+          "abbrName": null,
+          "name": "运营部",
+          "orderNum": 0,
+          "parentId": 2077
+        }
+      ],
+      "level": 1,
+      "departmentId": 2077,
+      "abbrName": null,
+      "name": "广东测试然",
+      "orderNum": 13,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2087,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 2086
+        },
+        {
+          "level": 2,
+          "departmentId": 2088,
+          "abbrName": null,
+          "name": "综合部",
+          "orderNum": 0,
+          "parentId": 2086
+        }
+      ],
+      "level": 1,
+      "departmentId": 2086,
+      "abbrName": null,
+      "name": "广东测试蓝",
+      "orderNum": 14,
+      "parentId": null
+    },
+    {
+      "subDptList": [
+        {
+          "level": 2,
+          "departmentId": 2083,
+          "abbrName": null,
+          "name": "管理部",
+          "orderNum": 0,
+          "parentId": 2082
+        },
+        {
+          "level": 2,
+          "departmentId": 2084,
+          "abbrName": null,
+          "name": "关系部",
+          "orderNum": 0,
+          "parentId": 2082
+        },
+        {
+          "level": 2,
+          "departmentId": 2085,
+          "abbrName": null,
+          "name": "运营部",
+          "orderNum": 0,
+          "parentId": 2082
+        }
+      ],
+      "level": 1,
+      "departmentId": 2082,
+      "abbrName": null,
+      "name": "广东测试盛",
+      "orderNum": 15,
+      "parentId": null
+    },
+    {
+      "level": 1,
+      "departmentId": 2096,
+      "abbrName": null,
+      "name": "测试部门",
+      "orderNum": 100,
+      "parentId": null
+    }
+  ]
+}

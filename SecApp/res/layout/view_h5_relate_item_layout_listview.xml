@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/basic_selector_item_style"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <ImageView
+            android:id="@+id/h5_relate_item_icon"
+            android:src="@drawable/h5_item_default"
+            android:layout_width="64dip"
+            android:layout_height="64dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="21dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/h5_relate_item_icon"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/h5_relate_item_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:singleLine="true"
+                android:textColor="#2f2f2f"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/h5_relate_item_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left|center_vertical"
+                android:singleLine="true"
+                android:textColor="#808488"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- <ImageView -->
+    <!-- android:id="@+id/h5_relate_item_line" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:background="@drawable/im_skin_icon_list_splite_line" -->
+    <!-- android:scaleType="fitXY" /> -->
+
+    <View
+        android:id="@+id/h5_relate_item_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#e3e3e3" />
+
+</LinearLayout>

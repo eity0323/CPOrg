@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <com.sien.cphonegap.view.widgets.PullRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/h5_relate_pullrefresh"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/basic_page_color"
+        app:colors="@array/google_colors" >
+
+        <ListView
+            android:id="@+id/h5_relate_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="0px"
+            android:fadingEdge="none"
+            android:fadingEdgeLength="0dp"
+            android:focusable="true"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none">
+        </ListView>
+    </com.sien.cphonegap.view.widgets.PullRefreshLayout>
+
+</FrameLayout>

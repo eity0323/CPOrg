@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="red">#FFC93437</color>
+    <color name="blue">#FF375BF1</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="green">#FF34A350</color>
+    
+    <color name="basic_item_press_color">#f9f9f9</color>
+    <color name="basic_item_normal_color">@android:color/white</color>
+    <color name="basic_listview_item_title_textcolor">#ff2f2f2f</color>
+    <color name="basic_listview_item_content_textcolor">#ff808488</color>
+    <color name="app_orange_light">#ff8b4c</color>
+    <color name="app_orange_dark">#e57d44</color>
+    <color name="im_theme_bg_color">@color/basic_page_color</color>
+    <dimen name="im_text_size_normal14">14sp</dimen>
+    <color name="basic_page_color">#f8f8f8</color>
+    <color name="im_color_gray_a6">#a6a6a6</color>
+    <color name="basic_text_gray_color">#666666</color>
+
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/im_theme_bg_color"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <EditText
+        android:id="@+id/searchEt"
+        android:layout_width="0dp"
+        android:layout_height="36dip"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="9dip"
+        android:layout_weight="1"
+        android:background="@drawable/basic_skin_icon_search_edt_bg"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dip"
+        android:gravity="center_vertical"
+        android:hint="搜索联系人"
+        android:paddingLeft="10dip"
+        android:textColor="#abb1b6"
+        android:textSize="@dimen/im_text_size_normal14" />
+
+    <TextView
+        android:id="@+id/searchTv"
+        android:layout_width="0dp"
+        android:layout_height="36dip"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="9dip"
+        android:layout_weight="1"
+        android:background="@drawable/basic_skin_icon_search_edt_bg"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dip"
+        android:gravity="center_vertical"
+        android:hint="搜索联系人"
+        android:paddingLeft="10dip"
+        android:textColor="#abb1b6"
+        android:textSize="@dimen/im_text_size_normal14"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/menueBt"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="11dp"
+        android:padding="5dp"
+        android:background="@drawable/basic_skin_icon_search_edt_bg"
+        android:src="@drawable/search_menue_bt" />
+
+</LinearLayout>

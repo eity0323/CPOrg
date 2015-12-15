@@ -1,8 +1,6 @@
 package com.sien.cporg.utils.response;
 
-import java.util.List;
-
-import com.sien.cporg.model.beans.Department;
+import com.sien.cporg.model.beans.Organize;
 
 /**
  * 组织架构部门数据请求返回类
@@ -10,20 +8,20 @@ import com.sien.cporg.model.beans.Department;
  * @author sien
  * 
  */
-public class OrganiseDepRes extends BaseResponse {
+public class OrganizeResponse extends BaseResponse {
 
 	/**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 6616932432232786764L;
 
-	private List<Department> data;
+	private Organize data;
 
-	public List<Department> getData() {
+	public Organize getData() {
 		return data;
 	}
 
-	public void setData(List<Department> data) {
+	public void setData(Organize data) {
 		this.data = data;
 	}
 

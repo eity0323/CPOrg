@@ -30,6 +30,17 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 	private List<OrgNode> alls = new ArrayList<OrgNode>();
 	private int expandedIcon = -1;
 	private int collapsedIcon = -1;
+	
+	protected int viewStubResId = R.id.org_content_layout;//viewstub id
+	
+	//曾经背景色
+	private int empItemBgColor = 0x00eeeeee;//成员背景色
+	private int depItemBgColor = 0xffeeeeee;//部门背景色
+	private int rootItemBgColor = 0x00ffffff;//根节点背景色
+	
+	//层级间间距
+	private int levelPaddingLeft = 35;
+	private int levelPaddingTop=3,levelPaddingBottom=3,levelPaddingRight = 3;
 
 	/**
 	 * TreeAdapter构造函数
@@ -43,6 +54,32 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 		this.lif = (LayoutInflater) con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		addNode(rootNode);
 	}
+
+	
+	public int getEmpItemBgColor() {
+		return empItemBgColor;
+	}
+
+	public void setEmpItemBgColor(int empItemBgColor) {
+		this.empItemBgColor = empItemBgColor;
+	}
+
+	public int getDepItemBgColor() {
+		return depItemBgColor;
+	}
+
+	public void setDepItemBgColor(int depItemBgColor) {
+		this.depItemBgColor = depItemBgColor;
+	}
+
+	public int getRootItemBgColor() {
+		return rootItemBgColor;
+	}
+
+	public void setRootItemBgColor(int rootItemBgColor) {
+		this.rootItemBgColor = rootItemBgColor;
+	}
+
 
 	public void setDataSource(OrgNode rootNode) {
 		allsCache.clear();
@@ -206,8 +243,8 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 			createViewWithViewHolder(position,view,parent);
 			
 			holder = (BaseViewHolder) view.getTag();
-			holder.ivExEc = (ImageView) view.findViewById(R.id.org_execicon);
-			holder.rlLayout = (RelativeLayout) view.findViewById(R.id.org_item_container);
+			holder.execicon = (ImageView) view.findViewById(R.id.org_execicon);
+			holder.container = (RelativeLayout) view.findViewById(R.id.org_item_container);
 		} else {
 			holder = (BaseViewHolder) view.getTag();
 		}
@@ -220,39 +257,39 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 
 		// 背景 + 节点展开图标
 		if (position == 0) { // 根节点
-			holder.ivExEc.setVisibility(View.VISIBLE);
-			holder.ivExEc.setImageResource(R.drawable.im_skin_icon_tree_icon);
-			holder.rlLayout.setBackgroundColor(0x00ffffff);
-			holder.rlLayout.setPadding(3, 3, 3, 3);
+			holder.execicon.setVisibility(View.VISIBLE);
+			holder.execicon.setImageResource(R.drawable.im_skin_icon_tree_icon);
+			holder.container.setBackgroundColor(rootItemBgColor);
+			holder.container.setPadding(levelPaddingRight, levelPaddingTop, levelPaddingRight, levelPaddingBottom);
 		} else {
 			if (n != null) {
 				if (n.isLeaf()) {
 					if (n.getDepId() == null) { // 成员
 						// 是叶节点 不显示展开和折叠状态图标
-						holder.ivExEc.setVisibility(View.GONE);
-						holder.rlLayout.setBackgroundColor(0x00eeeeee);
+						holder.execicon.setVisibility(View.INVISIBLE);
+						holder.container.setBackgroundColor(empItemBgColor);
 						
 					} else { // 部门
-						holder.rlLayout.setBackgroundColor(0xffeeeeee);
+						holder.container.setBackgroundColor(depItemBgColor);
 						// 单击时控制子节点展开和折叠,状态图标改变
-						holder.ivExEc.setVisibility(View.VISIBLE);
+						holder.execicon.setVisibility(View.VISIBLE);
 						if (collapsedIcon != -1)
-							holder.ivExEc.setImageResource(collapsedIcon);
+							holder.execicon.setImageResource(collapsedIcon);
 					}
 				} else { // 部门
-					holder.rlLayout.setBackgroundColor(0xffeeeeee);
+					holder.container.setBackgroundColor(depItemBgColor);
 					// 单击时控制子节点展开和折叠,状态图标改变
-					holder.ivExEc.setVisibility(View.VISIBLE);
+					holder.execicon.setVisibility(View.VISIBLE);
 					if (n.isExpanded()) {
 						if (expandedIcon != -1)
-							holder.ivExEc.setImageResource(expandedIcon);
+							holder.execicon.setImageResource(expandedIcon);
 					} else {
 						if (collapsedIcon != -1)
-							holder.ivExEc.setImageResource(collapsedIcon);
+							holder.execicon.setImageResource(collapsedIcon);
 					}
 				}
 				// 控制缩进
-				holder.rlLayout.setPadding(35 * n.getLevel(), 3, 3, 3);
+				holder.container.setPadding(levelPaddingLeft * n.getLevel(), levelPaddingTop, levelPaddingRight, levelPaddingBottom);
 			}
 		}
 		return view;
@@ -264,7 +301,7 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 	 * 
 	 */
 	public class BaseViewHolder {
-		public ImageView ivExEc;// 展开或折叠标记">"或"v"
-		public RelativeLayout rlLayout;
+		public ImageView execicon;// 展开或折叠标记">"或"v"
+		public RelativeLayout container;
 	}
 }

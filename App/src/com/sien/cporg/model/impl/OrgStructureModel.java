@@ -26,16 +26,16 @@ public class OrgStructureModel implements IOrgStructureModel {
 	public void getEmployeesData(Context context, String departId, String sessionId, String loginJid, boolean fromCache){
 		double ram = Math.random();
 		//加载本地数据
-//		if(ram > 0.5f){
-//			EmployeeManager.getInstance().getDetailData(context,"employee1.json");
-//		}else{
-//			EmployeeManager.getInstance().getDetailData(context,"employee.json");
-//		}
-		//加载网络数据
 		if(ram > 0.5f){
-			EmployeeManager.getInstance().getDetailData(context,"2089");
+			EmployeeManager.getInstance().getDetailData(context,"employee1.json");
 		}else{
-			EmployeeManager.getInstance().getDetailData(context,"2026");
+			EmployeeManager.getInstance().getDetailData(context,"employee.json");
 		}
+		//加载网络数据
+//		if(ram > 0.5f){
+//			EmployeeManager.getInstance().getDetailData(context,"2089");
+//		}else{
+//			EmployeeManager.getInstance().getDetailData(context,"2026");
+//		}
 	}
 }

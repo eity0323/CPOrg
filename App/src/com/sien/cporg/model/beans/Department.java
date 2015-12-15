@@ -77,5 +77,4 @@ public class Department extends BaseModel {
 	public void setSubDptList(List<Department> subDptList) {
 		this.subDptList = subDptList;
 	}
-	
 }
