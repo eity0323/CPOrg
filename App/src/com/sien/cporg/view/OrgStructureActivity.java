@@ -47,7 +47,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	public static int NO_CHOOSE_MODE = 0;// 非选择模式(默认)
 	public static int SINGLE_CHOOSE_MODE = 1;// 单选
 	public static int MULTI_CHOOSE_MODE = 2;// 多选
-	private int chooseMode = MULTI_CHOOSE_MODE;// 选择模式
+	private int chooseMode = NO_CHOOSE_MODE;// 选择模式
 
 	private ListView listview;
 	private TitleHeaderBar titleBar;
@@ -300,6 +300,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 		}
 	}
 	
+	//任何部门下都能有成员
 	private void itemClickEveryWhereHasEmployee(int position){
 		if (helper == null)
 			return;

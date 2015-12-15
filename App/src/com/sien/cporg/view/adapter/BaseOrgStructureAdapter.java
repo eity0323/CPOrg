@@ -33,7 +33,7 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 	
 	protected int viewStubResId = R.id.org_content_layout;//viewstub id
 	
-	//曾经背景色
+	//设置背景色
 	private int empItemBgColor = 0xffffffff;//成员背景色
 	private int depItemBgColor = 0xffffffff;//部门背景色
 	private int rootItemBgColor = 0xffffffff;//根节点背景色
@@ -266,7 +266,7 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 				if (n.isLeaf()) {
 					if (n.getDepId() == null) { // 成员
 						// 是叶节点 不显示展开和折叠状态图标
-						holder.execicon.setVisibility(View.INVISIBLE);
+						holder.execicon.setVisibility(View.GONE);
 						holder.container.setBackgroundColor(empItemBgColor);
 						
 					} else { // 部门
