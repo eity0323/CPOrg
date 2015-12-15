@@ -31,6 +31,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 
 	private static final int MSG_UPDATE_DEPARTMENT = 0x0c1;//部门
 	private static final int MSG_UPDATE_CONTACTOR = 0x0c2;//成员
+	private static final int MSG_UPDATE_NODATA = 0x0c3;//没有数据
 
 	private IOrgStructureAction impl = null;
 	private IOrgStructureModel imodel = null;
@@ -118,7 +119,12 @@ public class OrgStructurePresenter extends IMBasePresenter {
 					updateMessageHander.sendMessage(msg);
 				}
 			} else {
-				showToast("请求失败，请稍后再试");
+				
+				if (updateMessageHander != null) {
+					Message msg = new Message();
+					msg.what = MSG_UPDATE_NODATA;
+					updateMessageHander.sendMessage(msg);
+				}
 			}
 		}
 	}
@@ -136,7 +142,11 @@ public class OrgStructurePresenter extends IMBasePresenter {
 					updateMessageHander.sendMessage(msg);
 				}
 			} else {
-				showToast("请求失败，请稍后再试");
+				if (updateMessageHander != null) {
+					Message msg = new Message();
+					msg.what = MSG_UPDATE_NODATA;
+					updateMessageHander.sendMessage(msg);
+				}
 			}
 		}
 	}
@@ -389,6 +399,8 @@ public class OrgStructurePresenter extends IMBasePresenter {
 				theActivity.hideInnerDialog();
 				theActivity.contactorHander(list);
 			}
+		}else if(msg.what == MSG_UPDATE_NODATA){
+			theActivity.showToast("请求失败，请稍后再试");
 		}
 
 	}

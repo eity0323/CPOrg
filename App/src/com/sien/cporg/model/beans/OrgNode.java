@@ -15,6 +15,8 @@ public class OrgNode {
 	private boolean isChecked = false;// 是否处于选中状态
 	private boolean isExpanded = true;// 是否处于展开状态
 	private boolean hasCheckBox = true;// 是否拥有复选框
+	private boolean isLoadedEmployee = false;//是否已经加载过成员
+	
 	
 	/*组织架构数据结构*/
 	private String depName;// 部门简称
@@ -34,6 +36,14 @@ public class OrgNode {
 	
 	public OrgNode() {
 		
+	}
+
+	public boolean isLoadedEmployee() {
+		return isLoadedEmployee;
+	}
+
+	public void setLoadedEmployee(boolean isLoadedEmployee) {
+		this.isLoadedEmployee = isLoadedEmployee;
 	}
 
 	/**

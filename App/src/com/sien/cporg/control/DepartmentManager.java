@@ -33,7 +33,7 @@ public class DepartmentManager extends BaseOrgManager{
 	
 	private String departmentFile = Params.ORG_CONFIG_FILE;//加载本地数据
 	private String departmentUrl = Params.ORG_CONFIG_URL;//加载网络数据
-	private String requestMode = departmentUrl;
+	private String requestMode = departmentFile;
 	
 	public static DepartmentManager getInstance() {
 		if (instance == null) {

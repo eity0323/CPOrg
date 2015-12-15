@@ -34,12 +34,12 @@ public abstract class BaseOrgStructureAdapter extends BaseAdapter {
 	protected int viewStubResId = R.id.org_content_layout;//viewstub id
 	
 	//曾经背景色
-	private int empItemBgColor = 0x00eeeeee;//成员背景色
-	private int depItemBgColor = 0xffeeeeee;//部门背景色
-	private int rootItemBgColor = 0x00ffffff;//根节点背景色
+	private int empItemBgColor = 0xffffffff;//成员背景色
+	private int depItemBgColor = 0xffffffff;//部门背景色
+	private int rootItemBgColor = 0xffffffff;//根节点背景色
 	
 	//层级间间距
-	private int levelPaddingLeft = 35;
+	private int levelPaddingLeft = 50;//35;
 	private int levelPaddingTop=3,levelPaddingBottom=3,levelPaddingRight = 3;
 
 	/**

@@ -239,59 +239,141 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			if (helper == null)
-				return;
-
-			int index = position - 1;// 减去listheader的索引数
-			// cp.add 防止数组越界
-			if (index < 0){
-				System.out.println("OrgStructureActivity position out of index");
-				index = 0;
-			}
-
-			curNode = (OrgNode) adapter.getItem(index);
-
-			if (curNode.isLeaf()) { // 叶子节点
-				if (curNode.getDepId() == null) { // 成员
-
-					Employee vo = curNode.getEmployee();
-					if (vo != null) {
-						// 选择模式不进入详情页面，显示模式则跳转至详情页面
-						if (chooseMode == MULTI_CHOOSE_MODE) {
-							if (("" + vo.getUserId()).equals(loginJid)) {// 不能选择自己
-								Toast.makeText(OrgStructureActivity.this, "请不要选择自己", Toast.LENGTH_SHORT).show();
-								return;
-							}
-							// 已经是成员的用户不能取消
-							boolean ismembered = memberCheck("" + vo.getUserId());
-							if (ismembered)
-								return;
-							// end
-
-							boolean tempstatus = curNode.isChecked();
-							curNode.setChecked(!tempstatus);
-
-							adapter.notifyDataSetChanged();
-
-							updateBtnCount();
-
-						} else if (chooseMode == SINGLE_CHOOSE_MODE) {
-							// TODO 单选模式
-						} else {
-
-							go2ContactorDetailActivity(("" + vo.getUserId()), false);
-						}
-					}
-				} else { // 末级部门
-					showLoadDialog("加载中...");
-					if (helper != null)
-						helper.loadEmployeesData(curNode, fromCache);
-				}
-			} else { // 部门
-				adapter.ExpandOrCollapse(index);
-			}
+			//itemClickOnlyLeafHasEmployee(position);
+			
+			itemClickEveryWhereHasEmployee(position);
 		}
 	};
+	
+	//所有成员都在最底层部门下
+	private void itemClickOnlyLeafHasEmployee(int position){
+		if (helper == null)
+			return;
+
+		int index = position - 1;// 减去listheader的索引数
+		// cp.add 防止数组越界
+		if (index < 0){
+			System.out.println("OrgStructureActivity position out of index");
+			index = 0;
+		}
+
+		curNode = (OrgNode) adapter.getItem(index);
+
+		if (curNode.isLeaf()) { // 叶子节点
+			if (curNode.getDepId() == null) { // 成员
+
+				Employee vo = curNode.getEmployee();
+				if (vo != null) {
+					// 选择模式不进入详情页面，显示模式则跳转至详情页面
+					if (chooseMode == MULTI_CHOOSE_MODE) {
+						if (("" + vo.getUserId()).equals(loginJid)) {// 不能选择自己
+							Toast.makeText(OrgStructureActivity.this, "请不要选择自己", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						// 已经是成员的用户不能取消
+						boolean ismembered = memberCheck("" + vo.getUserId());
+						if (ismembered)
+							return;
+						// end
+
+						boolean tempstatus = curNode.isChecked();
+						curNode.setChecked(!tempstatus);
+
+						adapter.notifyDataSetChanged();
+
+						updateBtnCount();
+
+					} else if (chooseMode == SINGLE_CHOOSE_MODE) {
+						// TODO 单选模式
+					} else {
+
+						go2ContactorDetailActivity(("" + vo.getUserId()), false);
+					}
+				}
+			} else { // 末级部门
+				showLoadDialog("加载中...");
+				if (helper != null)
+					helper.loadEmployeesData(curNode, fromCache);
+			}
+		} else { // 部门
+			adapter.ExpandOrCollapse(index);
+		}
+	}
+	
+	private void itemClickEveryWhereHasEmployee(int position){
+		if (helper == null)
+			return;
+
+		int index = position - 1;// 减去listheader的索引数
+		// cp.add 防止数组越界
+		if (index < 0){
+			System.out.println("OrgStructureActivity position out of index");
+			index = 0;
+		}
+
+		curNode = (OrgNode) adapter.getItem(index);
+
+		if (curNode.isLeaf()) { // 叶子节点
+			if (curNode.getDepId() == null) { // 成员
+
+				Employee vo = curNode.getEmployee();
+				if (vo != null) {
+					// 选择模式不进入详情页面，显示模式则跳转至详情页面
+					if (chooseMode == MULTI_CHOOSE_MODE) {
+						if (("" + vo.getUserId()).equals(loginJid)) {// 不能选择自己
+							Toast.makeText(OrgStructureActivity.this, "请不要选择自己", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						// 已经是成员的用户不能取消
+						boolean ismembered = memberCheck("" + vo.getUserId());
+						if (ismembered)
+							return;
+						// end
+
+						boolean tempstatus = curNode.isChecked();
+						curNode.setChecked(!tempstatus);
+
+						adapter.notifyDataSetChanged();
+
+						updateBtnCount();
+
+					} else if (chooseMode == SINGLE_CHOOSE_MODE) {
+						// TODO 单选模式
+					} else {
+						go2ContactorDetailActivity(("" + vo.getUserId()), false);
+					}
+				}
+			} else { // 末级部门
+				if(index == 0){
+					adapter.ExpandOrCollapse(index);
+					return;
+				}
+				
+				if(curNode.isLoadedEmployee()){
+					adapter.ExpandOrCollapse(index);
+				}else{
+					showLoadDialog("加载中...");
+					if (helper != null){
+						helper.loadEmployeesData(curNode, fromCache);
+					}
+				}
+			}
+		} else { // 部门
+			if(index == 0){
+				adapter.ExpandOrCollapse(index);
+				return;
+			}
+			
+			if(curNode.isLoadedEmployee()){
+				adapter.ExpandOrCollapse(index);
+			}else{
+				showLoadDialog("加载中...");
+				if (helper != null){
+					helper.loadEmployeesData(curNode, fromCache);
+				}
+			}
+		}
+	}
 
 	/** 检测用户是否已经为成员 */
 	private boolean memberCheck(String memberJid) {
@@ -402,6 +484,8 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 
 	@Override
 	public void updateEmployeeLayout(OrgNode organize, OrgNode targetNode) {
+		targetNode.setLoadedEmployee(true);
+		
 		rootNode = organize;
 		adapter.setDataSource(organize);
 
