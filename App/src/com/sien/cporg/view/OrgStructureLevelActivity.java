@@ -25,11 +25,11 @@ import com.sien.cporg.R;
 import com.sien.cporg.model.beans.Employee;
 import com.sien.cporg.model.beans.OrgNode;
 import com.sien.cporg.model.beans.Organize;
-import com.sien.cporg.presenter.OrgStructurePresenterEx;
+import com.sien.cporg.presenter.OrgStructurePresenterLevel;
 import com.sien.cporg.view.adapter.BaseOrgStructureAdapter;
 import com.sien.cporg.view.adapter.MultiChooseOrgAdapter;
-import com.sien.cporg.view.adapter.NormalOrgAdapterEx;
-import com.sien.cporg.view.interfaces.IOrgStructureActionEx;
+import com.sien.cporg.view.adapter.NormalOrgAdapterLevel;
+import com.sien.cporg.view.interfaces.IOrgStructureActionLevel;
 import com.sien.cporg.view.widgets.LoadingDialog;
 import com.sien.cporg.view.widgets.PullRefreshLayout;
 import com.sien.cporg.view.widgets.PullRefreshLayout.OnRefreshListener;
@@ -43,7 +43,7 @@ import de.greenrobot.event.EventBus;
  * @author sien
  * 
  */
-public class OrgStructureExActivity extends Activity implements IOrgStructureActionEx {
+public class OrgStructureLevelActivity extends Activity implements IOrgStructureActionLevel {
 
 	public static int NO_CHOOSE_MODE = 0;// 非选择模式(默认)
 	public static int SINGLE_CHOOSE_MODE = 1;// 单选
@@ -64,7 +64,7 @@ public class OrgStructureExActivity extends Activity implements IOrgStructureAct
 	private String loginJid;
 	private String organiseRootName = "组织架构";
 
-	private OrgStructurePresenterEx helper = null;
+	private OrgStructurePresenterLevel helper = null;
 	private boolean fromCache = true;
 
 	protected LoadingDialog loadingDialog;
@@ -78,7 +78,7 @@ public class OrgStructureExActivity extends Activity implements IOrgStructureAct
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.im_activity_orgstructure);
 
-		helper = new OrgStructurePresenterEx(this);
+		helper = new OrgStructurePresenterLevel(this);
 		fromCache = true;
 
 		initImageLoader();
@@ -167,7 +167,7 @@ public class OrgStructureExActivity extends Activity implements IOrgStructureAct
 		}else if(chooseMode == SINGLE_CHOOSE_MODE){
 			//TODO 单选模式
 		}else{
-			adapter = new NormalOrgAdapterEx(this, rootNode);
+			adapter = new NormalOrgAdapterLevel(this, rootNode);
 		}
 		// 设置展开和折叠时图标
 		adapter.setExpandedCollapsedIcon(R.drawable.im_skin_icon_tree_open, R.drawable.im_skin_icon_tree_close);
@@ -260,7 +260,7 @@ public class OrgStructureExActivity extends Activity implements IOrgStructureAct
 						// 选择模式不进入详情页面，显示模式则跳转至详情页面
 						if (chooseMode == MULTI_CHOOSE_MODE) {
 							if (("" + vo.getUserId()).equals(loginJid)) {// 不能选择自己
-								Toast.makeText(OrgStructureExActivity.this, "请不要选择自己", Toast.LENGTH_SHORT).show();
+								Toast.makeText(OrgStructureLevelActivity.this, "请不要选择自己", Toast.LENGTH_SHORT).show();
 								return;
 							}
 							// 已经是成员的用户不能取消

@@ -8,7 +8,7 @@ import android.content.Context;
  * @author sien
  * 
  */
-public interface IOrgStructureModelEx {
+public interface IOrgStructureModelLevel {
 	/**
 	 * 获取组织架构数据
 	 * 

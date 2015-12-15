@@ -19,9 +19,9 @@ import com.sien.cporg.view.widgets.CircleImageView;
  * @author sien
  *
  */
-public class NormalOrgAdapterEx extends BaseOrgStructureAdapter {
+public class NormalOrgAdapterLevel extends BaseOrgStructureAdapter {
 
-	public NormalOrgAdapterEx(Context context, OrgNode rootNode) {
+	public NormalOrgAdapterLevel(Context context, OrgNode rootNode) {
 		super(context, rootNode);
 		
 		setEmpItemBgColor(getDepItemBgColor());

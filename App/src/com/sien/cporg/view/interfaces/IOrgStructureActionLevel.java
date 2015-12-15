@@ -12,7 +12,7 @@ import com.sien.cporg.model.beans.Organize;
  * @author sien
  * 
  */
-public interface IOrgStructureActionEx {
+public interface IOrgStructureActionLevel {
 
 	/**更新部门数据*/
 	public void updateOrganizeLayout(OrgNode node, OrgNode targetNode,Organize data);

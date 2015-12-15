@@ -11,15 +11,15 @@ import com.sien.cporg.model.beans.Department;
 import com.sien.cporg.model.beans.Employee;
 import com.sien.cporg.model.beans.OrgNode;
 import com.sien.cporg.model.beans.Organize;
-import com.sien.cporg.model.impl.OrgStructureModelEx;
-import com.sien.cporg.model.interfaces.IOrgStructureModelEx;
+import com.sien.cporg.model.impl.OrgStructureModelLevel;
+import com.sien.cporg.model.interfaces.IOrgStructureModelLevel;
 import com.sien.cporg.utils.Params;
 import com.sien.cporg.utils.cache.LruCacheManager;
 import com.sien.cporg.utils.clone.CloneUtils;
 import com.sien.cporg.utils.events.IMAPPEvents;
 import com.sien.cporg.utils.events.IMAPPEvents.LoadOrganizeEvent;
 import com.sien.cporg.view.OrgStructureActivity;
-import com.sien.cporg.view.interfaces.IOrgStructureActionEx;
+import com.sien.cporg.view.interfaces.IOrgStructureActionLevel;
 
 /**
  * 组织架构管理类
@@ -27,13 +27,13 @@ import com.sien.cporg.view.interfaces.IOrgStructureActionEx;
  * @author sien
  * 
  */
-public class OrgStructurePresenterEx extends IMBasePresenter {
+public class OrgStructurePresenterLevel extends IMBasePresenter {
 
 	private static final int MSG_UPDATE_DEPARTMENT = 0x0c1;//部门
 	private static final int MSG_UPDATE_NODATA = 0x0c2;//没有数据
 
-	private IOrgStructureActionEx impl = null;
-	private IOrgStructureModelEx imodel = null;
+	private IOrgStructureActionLevel impl = null;
+	private IOrgStructureModelLevel imodel = null;
 
 	private List<Employee> initSelectedContactors = new ArrayList<Employee>();
 	private OrgNode organizes; // 组织架构根节点
@@ -45,14 +45,14 @@ public class OrgStructurePresenterEx extends IMBasePresenter {
 	private String organiseRootName = "组织架构";
 	private int checkMode = OrgStructureActivity.NO_CHOOSE_MODE;
 
-	public OrgStructurePresenterEx(Context context) {
+	public OrgStructurePresenterLevel(Context context) {
 		super();
 		this.mcontext = context;
-		impl = (IOrgStructureActionEx) context;
+		impl = (IOrgStructureActionLevel) context;
 
 		updateMessageHander = new InnerHandler(this);
 		
-		imodel = new OrgStructureModelEx();
+		imodel = new OrgStructureModelLevel();
 
 		initial();
 	}
@@ -371,7 +371,7 @@ public class OrgStructurePresenterEx extends IMBasePresenter {
 
 	@Override
 	protected void handleMessageFunc(BasePresenter helper, Message msg) {
-		OrgStructurePresenterEx theActivity = (OrgStructurePresenterEx) helper;
+		OrgStructurePresenterLevel theActivity = (OrgStructurePresenterLevel) helper;
 		if (theActivity == null)
 			return;
 

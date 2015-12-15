@@ -3,7 +3,7 @@ package com.sien.cporg.model.impl;
 import android.content.Context;
 
 import com.sien.cporg.control.OrganizeManager;
-import com.sien.cporg.model.interfaces.IOrgStructureModelEx;
+import com.sien.cporg.model.interfaces.IOrgStructureModelLevel;
 
 /**
  * 组织架构数据处理
@@ -11,8 +11,8 @@ import com.sien.cporg.model.interfaces.IOrgStructureModelEx;
  * @author sien
  * 
  */
-public class OrgStructureModelEx implements IOrgStructureModelEx {
-	public OrgStructureModelEx(){
+public class OrgStructureModelLevel implements IOrgStructureModelLevel {
+	public OrgStructureModelLevel(){
 		
 	}
 
