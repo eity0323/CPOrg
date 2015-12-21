@@ -26,4 +26,7 @@ public interface IOrgStructureAction {
 	
 	/**显示加载框*/
 	public void showToast(String str);
+	
+	/**没有成员的时候还需要更新部门*/
+	public void refreshDempart(int index);
 }

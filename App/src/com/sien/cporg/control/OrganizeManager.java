@@ -31,7 +31,7 @@ public class OrganizeManager extends BaseOrgManager{
 	
 	private String organizeFile = "organize.json";//加载本地数据
 	private String organizeUrl = Params.ORG_CONFIG_URL;//加载网络数据
-	private String requestMode = organizeFile;
+	private String requestMode = organizeUrl;
 	
 	public static OrganizeManager getInstance() {
 		if (instance == null) {

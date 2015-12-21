@@ -1,0 +1,14 @@
+# view AndroidManifest.xml #generated:19
+-keep class com.sien.cporg.view.OrgStructureActivity { <init>(...); }
+
+# view res/layout/im_view_orgstructure_item_ex.xml #generated:62
+# view res/layout/view_multi_choose_org_item.xml #generated:9
+# view res/layout/view_normal_org_item.xml #generated:7
+-keep class com.sien.cporg.view.widgets.CircleImageView { <init>(...); }
+
+# view res/layout/im_activity_orgstructure.xml #generated:11
+-keep class com.sien.cporg.view.widgets.PullRefreshLayout { <init>(...); }
+
+# view res/layout/base_title_headerbar.xml #generated:2
+-keep class com.sien.cporg.view.widgets.TitleHeaderBar { <init>(...); }
+

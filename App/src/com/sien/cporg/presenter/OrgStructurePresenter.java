@@ -40,6 +40,7 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	private OrgNode organizes; // 组织架构根节点
 	private OrgNode targetNode; // 根据指点节点id查到的目标节点
 	private OrgNode curNode; // 当前节点
+	private int curIndex;//当前节点的索引
 
 	private String loginJid = "";
 	private String sessionId;
@@ -98,8 +99,9 @@ public class OrgStructurePresenter extends IMBasePresenter {
 	}
 
 	/** 加载员工数据 */
-	public void loadEmployeesData(OrgNode node, boolean fromCache) {
+	public void loadEmployeesData(OrgNode node, boolean fromCache,int index) {
 		curNode = node;
+		curIndex = index;
 		String departId = node.getDepId();
 		if(imodel != null){
 			imodel.getEmployeesData(mcontext, departId, sessionId, loginJid, fromCache);
@@ -233,6 +235,13 @@ public class OrgStructurePresenter extends IMBasePresenter {
 			return;
 
 		impl.hideInnerDialog();
+	}
+	
+	private void refreshDempart(){
+		if(impl == null)
+			return;
+		
+		impl.refreshDempart(curIndex);
 	}
 
 	/** 获取新选中的联系人（排除初始选中的用户） */
@@ -397,9 +406,16 @@ public class OrgStructurePresenter extends IMBasePresenter {
 			List<Employee> list = (List<Employee>) msg.obj;
 			if (list != null) {
 				theActivity.hideInnerDialog();
-				theActivity.contactorHander(list);
+				
+				if(list.size() > 0)
+					theActivity.contactorHander(list);
+				else
+					theActivity.refreshDempart();
+			}else{
+				theActivity.refreshDempart();
 			}
 		}else if(msg.what == MSG_UPDATE_NODATA){
+			theActivity.hideInnerDialog();
 			theActivity.showToast("请求失败，请稍后再试");
 		}
 

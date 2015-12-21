@@ -29,7 +29,7 @@ public class EmployeeManager extends BaseOrgManager{
 	private List<Employee> employees = null;
 	
 	private String employeeFile = "employee.json";
-	private String employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId=2089&sessionId=20e70823f62a42a68cd8e5cb29454234";
+	private String employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId=2340&sessionId=b63f29f514d44022a3d3ef07cd043780";
 	
 	private String requestMode = employeeFile;//请求模式
 
@@ -102,12 +102,12 @@ public class EmployeeManager extends BaseOrgManager{
 	
 	public void getDetailData(final Context context,String departmentId) {
 		//加载本地数据
-		employeeFile = departmentId;
-		requestMode = employeeFile;
+//		employeeFile = departmentId;
+//		requestMode = employeeFile;
 		
 		//加载网络数据
-//		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=20e70823f62a42a68cd8e5cb29454234";
-//		requestMode = employeeUrl;
+		employeeUrl = "http://58.250.204.31:18880/account_auth_admin/personal-api.getEmployeesByDepartmentId?departmentId="+ departmentId +"&sessionId=b63f29f514d44022a3d3ef07cd043780";
+		requestMode = employeeUrl;
 
 		getDetailData(context);
 	}

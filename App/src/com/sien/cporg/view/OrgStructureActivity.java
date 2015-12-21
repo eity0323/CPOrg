@@ -121,8 +121,10 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 	private void initLayout() {
 		listview = (ListView) findViewById(R.id.im_orgstructure_listview);
 		titleBar = (TitleHeaderBar) findViewById(R.id.titleBar);
-		rightBtn = titleBar.getRightTextView();
-		rightBtn.setMinWidth(100);
+		if(titleBar != null){
+			rightBtn = titleBar.getRightTextView();
+			rightBtn.setMinWidth(100);
+		}
 		refreshLayout = (PullRefreshLayout) findViewById(R.id.im_orgstructure_swiperefresh_Layout);
 
 		listHeader = getLayoutInflater().inflate(R.layout.im_view_listview_searchbar, null);
@@ -293,7 +295,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 			} else { // 末级部门
 				showLoadDialog("加载中...");
 				if (helper != null)
-					helper.loadEmployeesData(curNode, fromCache);
+					helper.loadEmployeesData(curNode, fromCache,position);
 			}
 		} else { // 部门
 			adapter.ExpandOrCollapse(index);
@@ -355,7 +357,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 				}else{
 					showLoadDialog("加载中...");
 					if (helper != null){
-						helper.loadEmployeesData(curNode, fromCache);
+						helper.loadEmployeesData(curNode, fromCache,position);
 					}
 				}
 			}
@@ -370,7 +372,7 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 			}else{
 				showLoadDialog("加载中...");
 				if (helper != null){
-					helper.loadEmployeesData(curNode, fromCache);
+					helper.loadEmployeesData(curNode, fromCache,position);
 				}
 			}
 		}
@@ -506,6 +508,16 @@ public class OrgStructureActivity extends Activity implements IOrgStructureActio
 		if (null != loadingDialog) {
 			loadingDialog.dismiss();
 			loadingDialog = null;
+		}
+	}
+
+	@Override
+	public void refreshDempart(int index) {
+		if(curNode != null){
+			curNode.setLoadedEmployee(true);
+		}
+		if(index > 0 && index < adapter.getCount()){
+			adapter.ExpandOrCollapse(index);
 		}
 	}
 }
