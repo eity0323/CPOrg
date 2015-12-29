@@ -65,6 +65,10 @@ E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\H5RelateWebAct
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\H5RelateWebActivity$8.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\H5RelateWebActivity.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\interfaces\IH5RelateAction.class \
+E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\PluginWebViewActivity$1.class \
+E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\PluginWebViewActivity$2.class \
+E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\PluginWebViewActivity.class \
+E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\CirclesDrawable$1.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\CirclesDrawable$ProgressStates.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\CirclesDrawable.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\LoadingDialog.class \

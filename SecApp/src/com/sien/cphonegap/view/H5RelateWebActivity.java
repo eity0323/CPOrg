@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.GeolocationPermissions.Callback;
@@ -24,13 +25,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sien.cphonegap.R;
-import com.sien.cphonegap.utils.events.H5RelateEvents.refreshH5RelateEvent;
 import com.sien.cphonegap.utils.images.PhotoUtils;
-import com.sien.cphonegap.utils.phonegap.JavaScriptUtils;
 import com.sien.cphonegap.utils.phonegap.plugin.IPluginAction;
 import com.sien.cphonegap.view.widgets.LoadingDialog;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * [h5相关页面跳转]
@@ -60,7 +57,20 @@ public class H5RelateWebActivity extends CordovaActivity implements OnClickListe
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.basic_activity_webview_navigation);
+		
+		//getClassLoader().loadclass("org.apache.cordova.CordovaWebView");
+		try {
+//			getBaseContext().getClassLoader().loadClass("org.apache.cordova.CordovaWebView");
+			getClassLoader().loadClass("org.apache.cordova.CordovaWebView");
+			System.out.println("---------------------------load class try");
+		} catch (ClassNotFoundException e) {
+			System.out.println("---------------------------load class catch");
+			e.printStackTrace();
+		}
+		System.out.println("-----------------------------h5 release----" + getBaseContext().getClass().getName());
+		
+		View v = LayoutInflater.from(getBaseContext()).inflate(R.layout.basic_activity_webview_navigation, null);
+		setContentView(v);
 		
 		needDefaultTitle = getIntent().getBooleanExtra("needDefaultTitle", false);
 

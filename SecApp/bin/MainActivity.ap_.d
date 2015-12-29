@@ -28,6 +28,7 @@ E:\workspace\git\CPOrg\SecApp\res\layout\demo_view_h5_relate_fragment_listview.x
 E:\workspace\git\CPOrg\SecApp\res\layout\im_layout_loading_panel.xml \
 E:\workspace\git\CPOrg\SecApp\res\layout\layout_pay_web.xml \
 E:\workspace\git\CPOrg\SecApp\res\layout\layout_searchmenue.xml \
+E:\workspace\git\CPOrg\SecApp\res\layout\plugin_webview.xml \
 E:\workspace\git\CPOrg\SecApp\res\layout\view_h5_relate_item_layout_listview.xml \
 E:\workspace\git\CPOrg\SecApp\res\layout\view_h5_relate_item_layout_listview_large.xml \
 E:\workspace\git\CPOrg\SecApp\res\values\array.xml \

@@ -49,13 +49,31 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".view.H5RelateWebActivity"></activity>
-        <activity android:name=".view.WebActivity"></activity>
+        <activity android:name=".view.H5RelateWebActivity">
+             <intent-filter>
+                <action
+                    android:name="test.webXX" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         
         <activity
             android:name="com.phonegap.DroidGap"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:name=".view.PluginWebViewActivity" >
+            <intent-filter>
+                <action
+                    android:name="test.webXX" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

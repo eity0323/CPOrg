@@ -81,15 +81,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int video_skin_icon_no_data=0x7f02000e;
     }
     public static final class id {
+        public static final int btn=0x7f0b0019;
         public static final int btn_back=0x7f0b0011;
         public static final int btn_web_back=0x7f0b0005;
         public static final int circles=0x7f0b0000;
+        public static final int content=0x7f0b0018;
         public static final int cordova_webview=0x7f0b0007;
         public static final int dialog_loading_text=0x7f0b000f;
-        public static final int h5_relate_item_content=0x7f0b001a;
-        public static final int h5_relate_item_icon=0x7f0b0018;
-        public static final int h5_relate_item_line=0x7f0b001b;
-        public static final int h5_relate_item_title=0x7f0b0019;
+        public static final int h5_relate_item_content=0x7f0b001d;
+        public static final int h5_relate_item_icon=0x7f0b001b;
+        public static final int h5_relate_item_line=0x7f0b001e;
+        public static final int h5_relate_item_title=0x7f0b001c;
         public static final int h5_relate_listview=0x7f0b000d;
         public static final int h5_relate_pullrefresh=0x7f0b000c;
         public static final int imageview=0x7f0b000e;
@@ -109,6 +111,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tv_title=0x7f0b0012;
         public static final int water_drop=0x7f0b0003;
         public static final int webView=0x7f0b0014;
+        public static final int webview=0x7f0b001a;
     }
     public static final class layout {
         public static final int basic_activity_webview_navigation=0x7f030000;
@@ -118,8 +121,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int im_layout_loading_panel=0x7f030004;
         public static final int layout_pay_web=0x7f030005;
         public static final int layout_searchmenue=0x7f030006;
-        public static final int view_h5_relate_item_layout_listview=0x7f030007;
-        public static final int view_h5_relate_item_layout_listview_large=0x7f030008;
+        public static final int plugin_webview=0x7f030007;
+        public static final int view_h5_relate_item_layout_listview=0x7f030008;
+        public static final int view_h5_relate_item_layout_listview_large=0x7f030009;
     }
     public static final class string {
         public static final int action_settings=0x7f090002;

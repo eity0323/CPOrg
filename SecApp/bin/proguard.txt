@@ -1,4 +1,4 @@
-# view AndroidManifest.xml #generated:55
+# view AndroidManifest.xml #generated:62
 -keep class com.phonegap.DroidGap { <init>(...); }
 
 # view AndroidManifest.xml #generated:42
@@ -7,8 +7,8 @@
 # view AndroidManifest.xml #generated:52
 -keep class com.sien.cphonegap.view.H5RelateWebActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:53
--keep class com.sien.cphonegap.view.WebActivity { <init>(...); }
+# view AndroidManifest.xml #generated:68
+-keep class com.sien.cphonegap.view.PluginWebViewActivity { <init>(...); }
 
 # view res/layout/demo_menue_popupwindow.xml #generated:7
 -keep class com.sien.cphonegap.view.widgets.NoScrollerListView { <init>(...); }
