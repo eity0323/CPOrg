@@ -38,8 +38,6 @@ E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\net\NetworkUt
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\net\StringUtils.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\Params.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\parser\JsonMananger.class \
-E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\phonegap\JavaScriptUtils$1.class \
-E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\phonegap\JavaScriptUtils.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\phonegap\plugin\CPlugin.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\phonegap\plugin\IPluginAction.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\utils\requests\BaseRequestData.class \
@@ -86,7 +84,7 @@ E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\PullRe
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\PullRefreshLayout.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\RefreshDrawable.class \
 E:\workspace\git\CPOrg\SecApp\bin\classes\com\sien\cphonegap\view\widgets\SearchMenueCustom.class \
-E:\workspace\git\CPOrg\SecApp\bin\dexedLibs\cordova-e8a4a563223dda97d7bb100d7ede918d.jar \
+E:\workspace\git\CPOrg\SecApp\bin\dexedLibs\cordovacore-c6dc7cae0bd9dc0aa241be66e8632693.jar \
 E:\workspace\git\CPOrg\SecApp\bin\dexedLibs\fastjson-1.2.5-18d61a408bd0a626546c4069f2e97344.jar \
 E:\workspace\git\CPOrg\SecApp\bin\dexedLibs\eventbus-2.4.0-bbdda53bbbe61acf5b1527ab1893b1f1.jar \
 E:\workspace\git\CPOrg\SecApp\bin\dexedLibs\android-support-v4-062aa7286e00456c63f208313ce348ed.jar \

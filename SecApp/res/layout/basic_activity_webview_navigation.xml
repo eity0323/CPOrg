@@ -42,7 +42,7 @@
                 android:textSize="18sp" />
         </RelativeLayout>
 
-        <org.apache.cordova.CordovaWebView
+        <org.apache.cordova.engine.SystemWebView
             android:id="@+id/cordova_webview"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"

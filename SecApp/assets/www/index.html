@@ -13,73 +13,67 @@
 	    <script type="text/javascript" src="cordova_plugins.js"></script>
         
         <script type="text/javascript">
-        	phone_gap.initialize();
-        	
         	function isLogin(){
-				phone_gap.isLogin(function(json){
-					alert(json);
-				},function(){
-				
-				});
+				cordova.exec(function(json){alert(json);},function(){},"CPlugin","isLogin");
             }
             
             function showhead(){
-				phone_gap.showhead("title", true, function(){},function(){});
+				cordova.exec(function(){},function(){},"CPlugin","showhead",["title", true]);
             }
             
             
             function showShare(){
-				phone_gap.showShare("title", "content", function(){},function(){});
+				cordova.exec(function(){},function(){},"CPlugin","showShare",["title", "content"]);
             }
             
             function showpage(){
-				phone_gap.showpage("http://www.baidu.com", function(){},function(){});
+				cordova.exec(function(){},function(){},"CPlugin","showpage","http://www.baidu.com");
             }
             
             function showPhoto(){
-				phone_gap.showPhoto(function(json){
-					alert(json)
-				},function(json){
-					alert(json)
-				});
+				cordova.exec(function(json){alert(json)},function(json){alert(json)},"CPlugin","showPhoto",[]);
             }
             
              function getLocation(){
-				phone_gap.getLocation(function(json){
-					alert(json)
-				},function(){
-				
-				});
+				cordova.exec(function(json){alert(json)},function(){},"CPlugin","getLocation",[]);
             }
             
             function exit(){
-				phone_gap.exit(function(){},function(){});
+				cordova.exec(function(){},function(){},"CPlugin","exit",[]);
             }
             
             function startActivity(){
-				phone_gap.startActivity("LoginActivity", function(){
+				cordova.exec(function(){
 					alert("success");
 				},function(){
 					
-				});
+				},"CPlugin","LoginActivity");
             }
             
              function callPhone(){
-				phone_gap.callPhone("tel:18938856035");
+				cordova.exec(function(){},function(){},"CPlugin","callPhone","tel:18938856035");
             }
             
             
             function toast(){
-				phone_gap.toast("toast message");
+				cordova.exec(function(){},function(){},"CPlugin","toast","toast message");
             }
             
             function alertDialog(){
-				phone_gap.alertDialog("alertDialog", function(){
-					alert("alertDialog success");
-				},function(){
-					
-				});
+				cordova.exec(function(){alert("alertDialog success");},function(){},"CPlugin","alertDialog",[]);
             }
+            
+	cordova.require('cordova/channel').onCordovaReady.subscribe(function() {
+		cordova.exec(oncalljs, null, "CPlugin", "oncalljs", []);
+		function oncalljs(message) {
+			//在这里响应来自本地代码的调用
+			var testJson = eval("(" + message + ")");
+			if(testJson.action =="showalert"){
+ 				//...
+ 				alert("-------hello js " + testJson.data);
+			}
+ 		}
+	});
             
         </script>
 	</head>

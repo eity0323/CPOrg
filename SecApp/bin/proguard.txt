@@ -16,9 +16,11 @@
 # view res/layout/demo_view_h5_relate_fragment_listview.xml #generated:7
 -keep class com.sien.cphonegap.view.widgets.PullRefreshLayout { <init>(...); }
 
-# view res/layout/basic_activity_webview_navigation.xml #generated:45
 # view res/layout/layout_pay_web.xml #generated:34
 -keep class org.apache.cordova.CordovaWebView { <init>(...); }
+
+# view res/layout/basic_activity_webview_navigation.xml #generated:45
+-keep class org.apache.cordova.engine.SystemWebView { <init>(...); }
 
 # onClick res/layout/layout_pay_web.xml #generated:16
 -keepclassmembers class * { *** onBack(...); }
