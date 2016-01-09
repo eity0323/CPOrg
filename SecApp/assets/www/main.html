@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+	<head>
+		<title>phonegap exam</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+        <script type="text/javascript" src="cordova.js"></script>
+	    <script type="text/javascript" src="cordova_plugins.js"></script>
+        
+        <script type="text/javascript">
+        	function isLogin(){
+				cordova.exec(function(json){alert(json);},function(){},"CPlugin","isLogin");
+            }
+            
+            function showhead(){
+				cordova.exec(function(){},function(){},"CPlugin","showhead",["title", true]);
+            }
+            
+            
+            function showShare(){
+				cordova.exec(function(){},function(){},"CPlugin","showShare",["title", "content"]);
+            }
+            
+            function showpage(){
+				cordova.exec(function(){},function(){},"CPlugin","showpage","http://www.baidu.com");
+            }
+            
+            function showPhoto(){
+				cordova.exec(function(json){alert(json)},function(json){alert(json)},"CPlugin","showPhoto",[]);
+            }
+            
+             function getLocation(){
+				cordova.exec(function(json){alert(json)},function(){},"CPlugin","getLocation",[]);
+            }
+            
+            function exit(){
+				cordova.exec(function(){},function(){},"CPlugin","exit",[]);
+            }
+            
+            function startActivity(){
+				cordova.exec(function(){
+					alert("success");
+				},function(){
+					
+				},"CPlugin","LoginActivity");
+            }
+            
+             function callPhone(){
+				cordova.exec(function(){},function(){},"CPlugin","callPhone","tel:18938856035");
+            }
+            
+            
+            function toast(){
+				cordova.exec(function(){},function(){},"CPlugin","toast","toast message");
+            }
+            
+            function alertDialog(){
+				cordova.exec(function(){alert("alertDialog success");},function(){},"CPlugin","alertDialog",[]);
+            }
+            
+	cordova.require('cordova/channel').onCordovaReady.subscribe(function() {
+		cordova.exec(oncalljs, null, "CPlugin", "oncalljs", []);
+		function oncalljs(message) {
+			//在这里响应来自本地代码的调用
+			var testJson = eval("(" + message + ")");
+			if(testJson.action =="showalert"){
+ 				//...
+ 				alert("-------hello js " + testJson.data);
+			}
+ 		}
+	});
+            
+        </script>
+	</head>
+	
+	<body>
+		<div id="afui">
+			<div id="header">
+				<br><br>
+				<input type="button" name="isLogin" onClick="isLogin();" value="isLogin"/>
+				<br><br>
+				<input type="button" name="showhead" onClick="showhead();" value="showhead"/>
+				<br><br>
+				<input type="button" name="showShare" onClick="showShare();" value="showShare"/>
+				<br><br>
+				<input type="button" name="showPhoto" onClick="showPhoto();" value="showPhoto"/>
+				<br><br>
+				<input type="button" name="showpage" onClick="showpage();" value="showpage"/>
+				<br><br>
+				<input type="button" name="getLocation" onClick="getLocation();" value="getLocation"/>
+				<br><br>
+				<input type="button" name="startActivity" onClick="startActivity();" value="startActivity"/>
+				<br><br>
+				<input type="button" name="callPhone" onClick="callPhone();" value="callPhone"/>
+				<br><br>
+				<input type="button" name="toast" onClick="toast();" value="toast"/>
+				<br><br>
+				<input type="button" name="alertDialog" onClick="alertDialog();" value="alertDialog"/>
+				<br><br>
+				<input type="button" name="exit" onClick="exit();" value="exit"/>
+				<br><br>
+            </div>
+	    </div>
+	</body>
+</html>

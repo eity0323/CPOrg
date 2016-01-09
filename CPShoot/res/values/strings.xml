@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CPShoot</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="user_cancelled">User denied screen sharing permission</string>
+    
+    <string name="crop__saving" translatable="false">Saving picture…</string>
+    <string name="crop__wait" translatable="false">Please wait…</string>
+    <string name="crop__pick_error" translatable="false">No image sources available</string>
+    <string name="crop__done" translatable="false">确认</string>
+    <string name="crop__cancel" translatable="false">取消</string>
+
+</resources>

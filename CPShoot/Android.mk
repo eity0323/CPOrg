@@ -1,0 +1,1 @@
+LOCAL_CERTIFICATE := platform

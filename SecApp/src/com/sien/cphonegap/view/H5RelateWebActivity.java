@@ -53,7 +53,7 @@ public class H5RelateWebActivity extends Activity implements OnClickListener, IP
 	private TextView tv_error;
 
 	/** 加载url **/
-	private String preUrl = "file:///android_asset/www/index.html";
+	private String preUrl = "file:///android_asset/www/main.html";
 
     protected CordovaInterfaceImpl cordovaInterface = new CordovaInterfaceImpl(this) {
         @Override
@@ -118,6 +118,16 @@ public class H5RelateWebActivity extends Activity implements OnClickListener, IP
   		//开启DomStorage缓存
   		webSettings.setDomStorageEnabled(true);
   		//-----------------------------------------end
+  		
+  		// ----------------------------------------cp.add 用户h5获取cookie
+		webSettings.setAllowFileAccess(true);
+		// 如果访问的页面中有Javascript，则webview必须设置支持Javascript
+		webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+		webSettings.setAllowFileAccess(true);
+		webSettings.setAppCacheEnabled(true);
+		//syncCookie(this, preUrl);
+		//------------------------------------------end
+
 		
         ConfigXmlParser parser = new ConfigXmlParser();
         parser.parse(this);//这里会解析res/xml/config.xml配置文件
@@ -277,7 +287,8 @@ public class H5RelateWebActivity extends Activity implements OnClickListener, IP
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_web_back:
-			doReBack();
+//			doReBack();
+			doJava2Js();
 			break;
 
 		case R.id.layout_error:
