@@ -240,6 +240,7 @@ public class ScreenCaptureFragment extends Fragment implements View.OnClickListe
     
     private void saveImage(ImageReader mImageReader,int mWidth,int mHeight){
     	if(mImageReader == null)	return;
+    	
     	Image image = mImageReader.acquireLatestImage();
     	if(image == null)	return;
 		final Image.Plane[] planes = image.getPlanes();

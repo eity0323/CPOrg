@@ -1,6 +1,7 @@
 package com.sien.cphonegap.view;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.cordova.ConfigXmlParser;
 import org.apache.cordova.CordovaInterface;
@@ -34,6 +35,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sien.cphonegap.R;
 import com.sien.cphonegap.utils.phonegap.JavaScriptUtils;
@@ -52,9 +54,20 @@ public class H5ReleateWebFragment extends Fragment implements OnClickListener, C
 	private TextView title_web_view;
 	private TextView tv_error;
 
+	private final ExecutorService threadPool = Executors.newCachedThreadPool();
+	// Plugin to call when activity result is received
+	protected CordovaPlugin activityResultCallback = null;
+	protected boolean activityResultKeepRunning;
+
+	// Keep app running when pause is received. (default = true)
+	// If true, then the JavaScript and native code continue to run in the
+	// background
+	// when another application (activity) is started.
+	protected boolean keepRunning = true;
+
 	private Context mcontext;
 	/** 加载url **/
-	private String preUrl = "file:///android_asset/www/main.html";//http://vr.weilian.cn";//file:///android_asset/www/index.html";
+	private String preUrl = "http://172.19.5.171:8080/main.html";//"file:///android_asset/www/main.html";// "http://vr.weilian.cn";//"file:///android_asset/www/index.html";
 
 	@Override
 	@Nullable
@@ -190,17 +203,17 @@ public class H5ReleateWebFragment extends Fragment implements OnClickListener, C
 			systemWebView.loadUrl(preUrl);
 		}
 	}
-	
-    @Override
-    public void onDestroyView() {
-        if (systemWebView != null) {
-        	systemWebView.destroy();
-        }  
-    	super.onDestroyView();
-    }
-    
-	/**java调用js方法*/
-	private void doJava2Js(){
+
+	@Override
+	public void onDestroyView() {
+		if (systemWebView != null) {
+			systemWebView.destroy();
+		}
+		super.onDestroyView();
+	}
+
+	/** java调用js方法 */
+	private void doJava2Js() {
 		JavaScriptUtils.getInstance().sendCmd("{'action':'showalert','data':'i am java params'}");
 	}
 
@@ -271,7 +284,7 @@ public class H5ReleateWebFragment extends Fragment implements OnClickListener, C
 	@Override
 	public ExecutorService getThreadPool() {
 		// TODO Auto-generated method stub
-		return null;
+		return threadPool;
 	}
 
 	@Override
@@ -299,22 +312,48 @@ public class H5ReleateWebFragment extends Fragment implements OnClickListener, C
 	}
 
 	@Override
-	public void setActivityResultCallback(CordovaPlugin arg0) {
-		// TODO Auto-generated method stub
-
+	public void setActivityResultCallback(CordovaPlugin plugin) {
+		this.activityResultCallback = plugin;
 	}
 
 	@Override
-	public void startActivityForResult(CordovaPlugin arg0, Intent arg1, int arg2) {
-		// TODO Auto-generated method stub
+	public void startActivityForResult(CordovaPlugin command, Intent intent, int requestCode) {
+		this.activityResultCallback = command;
+		this.activityResultKeepRunning = this.keepRunning;
 
+		// If multitasking turned on, then disable it for activities that return
+		// results
+		if (command != null) {
+			this.keepRunning = false;
+		}
+
+		// Start activity
+		super.startActivityForResult(intent, requestCode);
 	}
+	
+    @Override
+    /**
+     * Called when an activity you launched exits, giving you the requestCode you started it with,
+     * the resultCode it returned, and any additional data from it.
+     *
+     * @param requestCode       The request code originally supplied to startActivityForResult(),
+     *                          allowing you to identify who this result came from.
+     * @param resultCode        The integer result code returned by the child activity through its setResult().
+     * @param data              An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        CordovaPlugin callback = this.activityResultCallback;
+        if (callback != null) {
+            callback.onActivityResult(requestCode, resultCode, intent);
+        }
+    }
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_web_back:
-//			doReBack();
+			// doReBack();
 			doJava2Js();
 			break;
 
@@ -324,9 +363,9 @@ public class H5ReleateWebFragment extends Fragment implements OnClickListener, C
 			break;
 		}
 	}
-	
-	/**执行返回事件（如果h5页面能返回则返回上一个url，不能返回则退出activity）*/
-	private void doReBack(){
+
+	/** 执行返回事件（如果h5页面能返回则返回上一个url，不能返回则退出activity） */
+	private void doReBack() {
 		if (systemWebView.canGoBack()) {
 			systemWebView.goBack();
 		} else {
@@ -342,6 +381,7 @@ public class H5ReleateWebFragment extends Fragment implements OnClickListener, C
 
 	@Override
 	public void showTitleBar(String title, boolean showNativeTitleBar) {
+		Toast.makeText(getActivity(), "componentActivity", Toast.LENGTH_SHORT).show();
 		layout_web_head.setVisibility(View.VISIBLE);
 		title_web_view.setText(title);
 	}

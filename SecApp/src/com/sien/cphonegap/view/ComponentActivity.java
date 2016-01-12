@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 import com.sien.cphonegap.R;
 import com.sien.cphonegap.utils.phonegap.plugin.IPluginAction;
@@ -37,13 +38,12 @@ public class ComponentActivity extends FragmentActivity implements IPluginAction
 	@Override
 	public void showTitleBar(String title, boolean showNativeTitleBar) {
 		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, "componentActivity", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void hideTitleBar() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
